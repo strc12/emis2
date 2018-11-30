@@ -47,7 +47,7 @@ $stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division,
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-    //make into table at some point
+    //make into table at some pointds
     echo($row["SchoolID"].','.$row["Schoolname"].",".$row["Division"]."<br>");
 }
 $conn=null;
