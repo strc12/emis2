@@ -1,4 +1,20 @@
+<?php
+session_start();
+include_once ("connect.php");
+$stmt = $conn->prepare("SELECT * FROM Schools" );
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+  //checks if row exists in database
+if($row) {
+  if (!isset($_SESSION['name']))
+  {
+      header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+  }
 
+}
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
