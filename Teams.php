@@ -42,7 +42,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
   <input type="submit" value="Add Team">
 </form>
 <?php
-//include_once ("connect.php");
+
 $stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
