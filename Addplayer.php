@@ -17,5 +17,5 @@ $stmt->bindParam(':School', $_POST["SchoolID"]);
 $stmt->bindParam(':Gender', $_POST["gender"]);
 
 $stmt->execute();
-header("Location:players.php");
+header("Location:Players.php");
 ?>

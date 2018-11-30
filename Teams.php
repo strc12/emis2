@@ -10,9 +10,9 @@ if (!isset($_SESSION['name']))
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title>Teams</title>
-    
+
 </head>
 <body>
 
@@ -21,7 +21,7 @@ if (!isset($_SESSION['name']))
 School:<select name="SchoolID">
   <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM schools" );
+$stmt = $conn->prepare("SELECT * FROM Schools" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
@@ -37,16 +37,16 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
   <input type="radio" name="division" value="A" checked> A team<br>
   <input type="radio" name="division" value="B"> B Team<br>
   <br>
- 
-  
+
+
   <input type="submit" value="Add Team">
 </form>
 <?php
 //include_once ("connect.php");
-$stmt = $conn->prepare("SELECT teams.Teamid, schools.Schoolname, teams.Division, teams.SchoolID FROM teams INNER JOIN schools ON teams.SchoolID = schools.SchoolID" );
+$stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{   
+{
     //make into table at some point
     echo($row["SchoolID"].','.$row["Schoolname"].",".$row["Division"]."<br>");
 }

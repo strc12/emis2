@@ -9,9 +9,9 @@ if (!isset($_SESSION['name']))
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title>Players</title>
-    
+
 </head>
 <body>
 <form action="Addplayer.php" method="POST">
@@ -26,7 +26,7 @@ if (!isset($_SESSION['name']))
   School:<select name="SchoolID">
   <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM schools" );
+$stmt = $conn->prepare("SELECT * FROM Schools" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
@@ -36,10 +36,10 @@ $conn=null;
 ?>
 
 </select>
-  
+
   <input type="submit" value="Add Player">
 </form>
 
 
 </body>
-</html>       
+</html>
