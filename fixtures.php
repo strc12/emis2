@@ -21,7 +21,8 @@ if (!isset($_SESSION['name']))
 Home Team:<select name="HomeID">
   <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT teams.Teamid, schools.Schoolname, teams.Division, teams.SchoolID FROM teams INNER JOIN schools ON teams.SchoolID = schools.SchoolID" );
+$stmt = $conn->prepare("SELECT teams.Teamid, schools.Schoolname, teams.Division, teams.SchoolID FROM teams 
+INNER JOIN schools ON teams.SchoolID = schools.SchoolID" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
@@ -35,7 +36,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 Away Team:<select name="AwayID">
   <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
+$stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams 
+INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
@@ -54,7 +56,14 @@ Date <input type='date' id='datepicker' name='fixtdate' size='9' value=''>
 </form>
 <?php
 //include_once ("connect.php");
-$stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division, away.Division FROM Fixtures INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID ORDER BY fixtdate ASC" );
+$stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
+awsc.Schoolname as AWS, hsch.Schoolname as HS, 
+home.Division, away.Division FROM Fixtures 
+INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
+INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
+INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
+INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
+ORDER BY fixtdate ASC" );
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
