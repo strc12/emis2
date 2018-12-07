@@ -22,7 +22,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         $_SESSION['name']=$row["Username"];
         header('Location: '.$redirect);
     }else{
-        header('Location: login.php');
+        header('Location: Login.php');
     }
 }
 $conn=null;

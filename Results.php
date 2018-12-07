@@ -37,7 +37,7 @@ function showresult(str) {
    <?php
    include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
-   awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division, away.Division FROM Fixtures 
+   awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM Fixtures 
    INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
    INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
    INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
@@ -51,7 +51,7 @@ function showresult(str) {
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
    {
        //make into table at some point
-       echo("<option value=".$row["FixtureID"].'>'.$row["HS"]." ".$row["Division"]." v ".$row["AWS"]." ".$row["Division"]." - ".$row["fixtdate"]."</option><br>");
+       echo("<option value=".$row["FixtureID"].'>'.$row["HS"]." ".$row["hd"]." v ".$row["AWS"]." ".$row["ad"]." - ".$row["fixtdate"]."</option><br>");
    }
    $conn=null;
    ?>
@@ -61,7 +61,7 @@ function showresult(str) {
 </form>
 <div id="results"></div>
 <script>
-$("#meetingPlace").on("change", function(){
+$("#matches").on("change", function(){
     var selected=$(this).val();
     $("#results").html("You selected: " + selected);
   })</script>
