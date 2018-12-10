@@ -59,7 +59,10 @@ $row = $stmt3->fetch(PDO::FETCH_ASSOC);
 $home=$row["HSID"];
 $away=$row["ASID"];
 ?>
-<form action ="Enterscores.php" method="POST" onsubmit="return validateForm()">
+<form action ="Selectplayers.php" method="POST" onsubmit="return validateForm()">
+<?php 
+echo("<input type='hidden'  name='FixID' value=".$row['FixtureID'].">");
+?>
 <h3>Players</h3><table style = "width:60%"  class="table-striped table-bordered table-condensed"><tr><th colspan="2">Home Players</th><th colspan="2">Away Players</th></tr>
     
 
