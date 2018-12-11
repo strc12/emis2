@@ -28,6 +28,8 @@ $stmt->bindParam(':AL3ID', $_POST["awaylady3"]);
 
 $stmt->execute();
 $conn=null;
+$_SESSION["fid"]=$_POST["FixID"];
+echo $_SESSION["fid"];
 header("Location:Enterscores.php");
 //echo("doine");
 ?>
