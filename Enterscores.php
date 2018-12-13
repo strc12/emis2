@@ -122,9 +122,16 @@ function totalscores(){
     document.getElementById('awaygamestotals').innerHTML=awaygamestotal;
 }
 function checkfilled(){
-    if (document.getElementById('m1a1').innerText='') ||(document.getElementById('m2a1').innerText='') ||(document.getElementById('m3a1').innerText='') ||(document.getElementById('m3aa1').innerText='') ||(document.getElementById('m4a1').innerText='') ||(document.getElementById('m4aa1').innerText
-    )(document.getElementById('m5a1').innerText='') ||(document.getElementById('m5aa1').innerText='') ||(document.getElementById('m6a1').innerText='') ||(document.getElementById('m6aa1').innerText='') ||(document.getElementById('m7a1').innerText='') ||(document.getElementById('m7aa1').innerText
-    )(document.getElementById('m8a1').innerText='') ||(document.getElementById('m8aa1').innerText='') ||(document.getElementById('m9a1').innerText='') ||(document.getElementById('m9aa1').innerText='') ||(document.getElementById('m10a1').innerText='') ||(document.getElementById('m10aa1').innerText=''));
+    //alert (document.getElementById('m1a1').innerText);
+    if (document.getElementById('m1a1').innerHTML=='' || document.getElementById('m2a1').innerHTML=='' 
+    || document.getElementById('m3a1').innerHTML=='' || document.getElementById('m3aa1').innerHTML=='' 
+    || document.getElementById('m4a1').innerHTML=='' || document.getElementById('m4aa1').innerHTML==''
+    || document.getElementById('m5a1').innerHTML=='' || document.getElementById('m5aa1').innerHTML=='' 
+    || document.getElementById('m6a1').innerHTML=='' || document.getElementById('m6aa1').innerHTML=='' 
+    || document.getElementById('m7a1').innerHTML=='' || document.getElementById('m7aa1').innerHTML==''
+    || document.getElementById('m8a1').innerHTML=='' || document.getElementById('m8aa1').innerHTML=='' 
+    || document.getElementById('m9a1').innerHTML=='' || document.getElementById('m9aa1').innerHTML=='' 
+    || document.getElementById('m10a1').innerHTML=='' || document.getElementById('m10aa1').innerHTML=='')
     {
         return 1;
     }else{
@@ -138,30 +145,42 @@ function games(match1,match2, home,away){
         if(homescore>21 || homescore<0){
             alert("invalid score Home team " + homescore);
             document.getElementById(match1).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match1).focus();
         }else if (awayscore>21 || awayscore<0){
             alert("invalid score Away team " + awayscore);
             document.getElementById(match2).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match2).focus();
         }else if (awayscore<21 && homescore<21){
             alert("No one to 21 yet!");
             document.getElementById(match2).value='';
             document.getElementById(match1).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match1).focus();
         }else if (awayscore!=21 && homescore!=21  && homescore!==homescore && awayscore!==awayscore){//checks if 21 has been entered in one only and also stops NAN  errors
             alert("No winner!");
             document.getElementById(match2).value='';
             document.getElementById(match1).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match1).focus();
         }else if (awayscore!=21 && homescore!=21  && homescore!==homescore && awayscore!==awayscore){//checks if 21 has been entered in one only and also stops NAN  errors
             alert("No winner!");
             document.getElementById(match2).value='';
             document.getElementById(match1).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match1).focus();
         }else if (homescore==21 && awayscore==21){
             alert("can't have two winners")
             document.getElementById(match2).value='';
             document.getElementById(match1).value='';
+            document.getElementById(home).innerHTML = ""; 
+            document.getElementById(away).innerHTML = "";
             document.getElementById(match1).focus();
         }else if(homescore>awayscore&&(homescore==21 ||awayscore==21)){
             document.getElementById(home).innerHTML = "1"; 
@@ -170,11 +189,13 @@ function games(match1,match2, home,away){
             document.getElementById(home).innerHTML = "0";
             document.getElementById(away).innerHTML = "1";           
         }
-    if (checkfilled()==1) {
-        console.log("SDF");
+    if (checkfilled()!=1) {
         document.getElementById("but").style.display='block';
+    }else{
+        document.getElementById("but").style.display='none';
     }
     }
+    
 
 </script>
 <tr>
