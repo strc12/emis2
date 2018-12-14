@@ -71,29 +71,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-</Head>
-<Body>
-<h3>Scores</h3>
-
-<form action ="Confirmresults.php" method="POST">
-<table style = "width:80%" class="table-striped table-bordered table-condensed">
-<tr>
-<th rowspan="2">Match No.</th>
-<th rowspan="2"><?php echo $row['HS']." ".$row['hd'];?></th>
-<th rowspan="2"> </th>
-<th rowspan="2"><?php echo $row['AWS']." ".$row['ad'];?></th>
-<th colspan = "2">Points</th>
-<th colspan="2">Games</th>
-</tr>
-
-<tr>
-<td><?php echo $row['HS'];?></td>
-<td><?php echo $row['AWS'];?></td>
-<td><?php echo $row['HS'];?></td>
-<td><?php echo $row['AWS'];?></td>
-</tr>
-<script>
-function totalscores(){
+    <script>
+    function totalscores(){
     var homegamestotal=0;
     var awaygamestotal=0;
     var homepointstotal=0;
@@ -120,6 +99,7 @@ function totalscores(){
     document.getElementById('homepointstotals').innerHTML=homepointstotal;
     document.getElementById('homegamestotals').innerHTML=homegamestotal;
     document.getElementById('awaygamestotals').innerHTML=awaygamestotal;
+    document.getElementById("subres").style.display='block';
 }
 function checkfilled(){
     //alert (document.getElementById('m1a1').innerText);
@@ -195,16 +175,37 @@ function games(match1,match2, home,away){
         document.getElementById("but").style.display='none';
     }
     }
-    
-
 </script>
+</Head>
+<Body>
+<h3>Scores</h3>
+
+<form action ="Confirmresults.php" method="POST">
+<?php echo("<input type='hidden'  name='FixID' value=".$_SESSION['fid'].">");?>
+<table style = "width:80%" class="table-striped table-bordered table-condensed">
+<tr>
+<th rowspan="2">Match No.</th>
+<th rowspan="2"><?php echo $row['HS']." ".$row['hd'];?></th>
+<th rowspan="2"> </th>
+<th rowspan="2"><?php echo $row['AWS']." ".$row['ad'];?></th>
+<th colspan = "2">Points</th>
+<th colspan="2">Games</th>
+</tr>
+
+<tr>
+<td><?php echo $row['HS'];?></td>
+<td><?php echo $row['AWS'];?></td>
+<td><?php echo $row['HS'];?></td>
+<td><?php echo $row['AWS'];?></td>
+</tr>
+
 <tr>
 <td>1</td>
 <td><?php echo $row['L1f']." ".$row['L1s'];?></td>
 <td>v</td>
 <td><?php echo $row['AL1f']." ".$row['AL1s'];?></td>
-<td><input id="m1hpts"  onchange="games(this.id,document.getElementById('m1apts').id,document.getElementById('m1h1').id,document.getElementById('m1a1').id)" type="text" ></td>
-<td><input id="m1apts" onchange="games(document.getElementById('m1hpts').id,this.id,document.getElementById('m1h1').id,document.getElementById('m1a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m1hpts" name="m1hpts" onchange="games(this.id,document.getElementById('m1apts').id,document.getElementById('m1h1').id,document.getElementById('m1a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m1apts" name="m1apts" onchange="games(document.getElementById('m1hpts').id,this.id,document.getElementById('m1h1').id,document.getElementById('m1a1').id)"type="text" ></td>
 <td id="m1h1"></td>
 <td id="m1a1"></td>
 </tr>
@@ -214,8 +215,8 @@ function games(match1,match2, home,away){
 <td><?php echo $row['M1f']." ".$row['M1s'];?></td>
 <td>v</td>
 <td><?php echo $row['AM1f']." ".$row['AM1s'];?></td>
-<td><input id="m2hpts"  onchange="games(this.id,document.getElementById('m2apts').id,document.getElementById('m2h1').id,document.getElementById('m2a1').id)" type="text" ></td>
-<td><input id="m2apts" onchange="games(document.getElementById('m2hpts').id,this.id,document.getElementById('m2h1').id,document.getElementById('m2a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m2hpts" name="m2hpts" onchange="games(this.id,document.getElementById('m2apts').id,document.getElementById('m2h1').id,document.getElementById('m2a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m2apts" name="m2apts" onchange="games(document.getElementById('m2hpts').id,this.id,document.getElementById('m2h1').id,document.getElementById('m2a1').id)"type="text" ></td>
 <td id="m2h1"></td>
 <td id="m2a1"></td>
 </tr>
@@ -225,15 +226,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['M2f']." ".$row['M2s']." & ",$row['M3f']." ".$row['M3s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AM2f']." ".$row['AM2s']." & ",$row['AM3f']." ".$row['AM3s'];?></td>
-<td><input id="m3hpts"  onchange="games(this.id,document.getElementById('m3apts').id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)" type="text" ></td>
-<td><input id="m3apts" onchange="games(document.getElementById('m3hpts').id,this.id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m3hpts" name="m3ahpts" onchange="games(this.id,document.getElementById('m3apts').id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m3apts" name="m3aapts" onchange="games(document.getElementById('m3hpts').id,this.id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)"type="text" ></td>
 <td id="m3h1"></td>
 <td id="m3a1"></td>
 </tr>
 
 <tr>
-<td><input id="m3ahpts"  onchange="games(this.id,document.getElementById('m3aapts').id,document.getElementById('m3ah1').id,document.getElementById('m3aa1').id)" type="text" ></td>
-<td><input id="m3aapts" onchange="games(document.getElementById('m3ahpts').id,this.id,document.getElementById('m3ah1').id,document.getElementById('m3aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m3ahpts" name="m3ahpts" onchange="games(this.id,document.getElementById('m3aapts').id,document.getElementById('m3ah1').id,document.getElementById('m3aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m3aapts" name="m3aapts" onchange="games(document.getElementById('m3ahpts').id,this.id,document.getElementById('m3ah1').id,document.getElementById('m3aa1').id)"type="text" ></td>
 <td id="m3ah1"></td>
 <td id="m3aa1"></td>
 </tr>
@@ -243,15 +244,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L2f']." ".$row['L2s']." & ",$row['L3f']." ".$row['L3s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL2f']." ".$row['AL2s']." & ",$row['AL3f']." ".$row['AL3s'];?></td>
-<td><input id="m4hpts"  onchange="games(this.id,document.getElementById('m4apts').id,document.getElementById('m4h1').id,document.getElementById('m4a1').id)" type="text" ></td>
-<td><input id="m4apts" onchange="games(document.getElementById('m4hpts').id,this.id,document.getElementById('m4h1').id,document.getElementById('m4a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m4hpts" name="m4hpts" onchange="games(this.id,document.getElementById('m4apts').id,document.getElementById('m4h1').id,document.getElementById('m4a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m4apts" name="m4apts" onchange="games(document.getElementById('m4hpts').id,this.id,document.getElementById('m4h1').id,document.getElementById('m4a1').id)"type="text" ></td>
 <td id="m4h1"></td>
 <td id="m4a1"></td>
 </tr>
 
 <tr>
-<td><input id="m4ahpts"  onchange="games(this.id,document.getElementById('m4aapts').id,document.getElementById('m4ah1').id,document.getElementById('m4aa1').id)" type="text" ></td>
-<td><input id="m4aapts" onchange="games(document.getElementById('m4ahpts').id,this.id,document.getElementById('m4ah1').id,document.getElementById('m4aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m4ahpts" name="m4ahpts" onchange="games(this.id,document.getElementById('m4aapts').id,document.getElementById('m4ah1').id,document.getElementById('m4aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m4aapts" name="m4aapts" onchange="games(document.getElementById('m4ahpts').id,this.id,document.getElementById('m4ah1').id,document.getElementById('m4aa1').id)"type="text" ></td>
 <td id="m4ah1"></td>
 <td id="m4aa1"></td>
 </tr>
@@ -261,15 +262,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['M1f']." ".$row['M1s']." & ",$row['M2f']." ".$row['M2s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AM1f']." ".$row['AM1s']." & ",$row['AM2f']." ".$row['AM2s'];?></td>
-<td><input id="m5hpts"  onchange="games(this.id,document.getElementById('m5apts').id,document.getElementById('m5h1').id,document.getElementById('m5a1').id)" type="text" ></td>
-<td><input id="m5apts" onchange="games(document.getElementById('m5hpts').id,this.id,document.getElementById('m5h1').id,document.getElementById('m5a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m5hpts" name="m5hpts" onchange="games(this.id,document.getElementById('m5apts').id,document.getElementById('m5h1').id,document.getElementById('m5a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m5apts" name="m5apts" onchange="games(document.getElementById('m5hpts').id,this.id,document.getElementById('m5h1').id,document.getElementById('m5a1').id)"type="text" ></td>
 <td id="m5h1"></td>
 <td id="m5a1"></td>
 </tr>
 
 <tr>
-<td><input id="m5ahpts"  onchange="games(this.id,document.getElementById('m5aapts').id,document.getElementById('m5ah1').id,document.getElementById('m5aa1').id)" type="text" ></td>
-<td><input id="m5aapts" onchange="games(document.getElementById('m5ahpts').id,this.id,document.getElementById('m5ah1').id,document.getElementById('m5aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m5ahpts" name="m5ahpts" onchange="games(this.id,document.getElementById('m5aapts').id,document.getElementById('m5ah1').id,document.getElementById('m5aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m5aapts" name="m5aapts" onchange="games(document.getElementById('m5ahpts').id,this.id,document.getElementById('m5ah1').id,document.getElementById('m5aa1').id)"type="text" ></td>
 <td id="m5ah1"></td>
 <td id="m5aa1"></td>
 </tr>
@@ -279,15 +280,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L1f']." ".$row['L1s']." & ",$row['L2f']." ".$row['L2s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL1f']." ".$row['AL1s']." & ",$row['AL2f']." ".$row['AL2s'];?></td>
-<td><input id="m6hpts"  onchange="games(this.id,document.getElementById('m6apts').id,document.getElementById('m6h1').id,document.getElementById('m6a1').id)" type="text" ></td>
-<td><input id="m6apts" onchange="games(document.getElementById('m6hpts').id,this.id,document.getElementById('m6h1').id,document.getElementById('m6a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m6hpts" name="m6hpts" onchange="games(this.id,document.getElementById('m6apts').id,document.getElementById('m6h1').id,document.getElementById('m6a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m6apts" name="m6apts" onchange="games(document.getElementById('m6hpts').id,this.id,document.getElementById('m6h1').id,document.getElementById('m6a1').id)"type="text" ></td>
 <td id="m6h1"></td>
 <td id="m6a1"></td>
 </tr>
 
 <tr>
-<td><input id="m6ahpts"  onchange="games(this.id,document.getElementById('m6aapts').id,document.getElementById('m6ah1').id,document.getElementById('m6aa1').id)" type="text" ></td>
-<td><input id="m6aapts" onchange="games(document.getElementById('m6ahpts').id,this.id,document.getElementById('m6ah1').id,document.getElementById('m6aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m6ahpts" name="m6ahpts"  onchange="games(this.id,document.getElementById('m6aapts').id,document.getElementById('m6ah1').id,document.getElementById('m6aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m6aapts" name="m6aapts" onchange="games(document.getElementById('m6ahpts').id,this.id,document.getElementById('m6ah1').id,document.getElementById('m6aa1').id)"type="text" ></td>
 <td id="m6ah1"></td>
 <td id="m6aa1"></td>
 </tr>
@@ -297,15 +298,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L3f']." ".$row['L3s']." & ",$row['M3f']." ".$row['M3s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL3f']." ".$row['AL3s']." & ",$row['AM3f']." ".$row['AM3s'];?></td>
-<td><input id="m7hpts"  onchange="games(this.id,document.getElementById('m7apts').id,document.getElementById('m7h1').id,document.getElementById('m7a1').id)" type="text" ></td>
-<td><input id="m7apts" onchange="games(document.getElementById('m7hpts').id,this.id,document.getElementById('m7h1').id,document.getElementById('m7a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m7hpts" name="m7hpts" onchange="games(this.id,document.getElementById('m7apts').id,document.getElementById('m7h1').id,document.getElementById('m7a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m7apts" name="m7apts" onchange="games(document.getElementById('m7hpts').id,this.id,document.getElementById('m7h1').id,document.getElementById('m7a1').id)"type="text" ></td>
 <td id="m7h1"></td>
 <td id="m7a1"></td>
 </tr>
 
 <tr>
-<td><input id="m7ahpts"  onchange="games(this.id,document.getElementById('m7aapts').id,document.getElementById('m7ah1').id,document.getElementById('m7aa1').id)" type="text" ></td>
-<td><input id="m7aapts" onchange="games(document.getElementById('m7ahpts').id,this.id,document.getElementById('m7ah1').id,document.getElementById('m7aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m7ahpts" name="m7ahpts" onchange="games(this.id,document.getElementById('m7aapts').id,document.getElementById('m7ah1').id,document.getElementById('m7aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m7aapts" name="m7aapts" onchange="games(document.getElementById('m7ahpts').id,this.id,document.getElementById('m7ah1').id,document.getElementById('m7aa1').id)"type="text" ></td>
 <td id="m7ah1"></td>
 <td id="m7aa1"></td>
 </tr>
@@ -315,15 +316,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L1f']." ".$row['L1s']." & ",$row['M1f']." ".$row['M1s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL1f']." ".$row['AL1s']." & ",$row['AM1f']." ".$row['AM1s'];?></td>
-<td><input id="m8hpts"  onchange="games(this.id,document.getElementById('m8apts').id,document.getElementById('m8h1').id,document.getElementById('m8a1').id)" type="text" ></td>
-<td><input id="m8apts" onchange="games(document.getElementById('m8hpts').id,this.id,document.getElementById('m8h1').id,document.getElementById('m8a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m8hpts" name="m8hpts" onchange="games(this.id,document.getElementById('m8apts').id,document.getElementById('m8h1').id,document.getElementById('m8a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m8apts" name="m8apts" onchange="games(document.getElementById('m8hpts').id,this.id,document.getElementById('m8h1').id,document.getElementById('m8a1').id)"type="text" ></td>
 <td id="m8h1"></td>
 <td id="m8a1"></td>
 </tr>
 
 <tr>
-<td><input id="m8ahpts"  onchange="games(this.id,document.getElementById('m8aapts').id,document.getElementById('m8ah1').id,document.getElementById('m8aa1').id)" type="text" ></td>
-<td><input id="m8aapts" onchange="games(document.getElementById('m8ahpts').id,this.id,document.getElementById('m8ah1').id,document.getElementById('m8aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m8ahpts"  name="m8ahpts" onchange="games(this.id,document.getElementById('m8aapts').id,document.getElementById('m8ah1').id,document.getElementById('m8aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m8aapts"  name="m8aapts"onchange="games(document.getElementById('m8ahpts').id,this.id,document.getElementById('m8ah1').id,document.getElementById('m8aa1').id)"type="text" ></td>
 <td id="m8ah1"></td>
 <td id="m8aa1"></td>
 </tr>
@@ -333,15 +334,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L3f']." ".$row['L3s']." & ",$row['M2f']." ".$row['M2s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL3f']." ".$row['AL3s']." & ",$row['AM2f']." ".$row['AM2s'];?></td>
-<td><input id="m9hpts"  onchange="games(this.id,document.getElementById('m9apts').id,document.getElementById('m9h1').id,document.getElementById('m9a1').id)" type="text" ></td>
-<td><input id="m9apts" onchange="games(document.getElementById('m9hpts').id,this.id,document.getElementById('m9h1').id,document.getElementById('m9a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m9hpts" name="m9hpts" onchange="games(this.id,document.getElementById('m9apts').id,document.getElementById('m9h1').id,document.getElementById('m9a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m9apts" name="m9apts" onchange="games(document.getElementById('m9hpts').id,this.id,document.getElementById('m9h1').id,document.getElementById('m9a1').id)"type="text" ></td>
 <td id="m9h1"></td>
 <td id="m9a1"></td>
 </tr>
 
 <tr>
-<td><input id="m9ahpts"  onchange="games(this.id,document.getElementById('m9aapts').id,document.getElementById('m9ah1').id,document.getElementById('m9aa1').id)" type="text" ></td>
-<td><input id="m9aapts" onchange="games(document.getElementById('m9ahpts').id,this.id,document.getElementById('m9ah1').id,document.getElementById('m9aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m9ahpts" name="m9ahpts" onchange="games(this.id,document.getElementById('m9aapts').id,document.getElementById('m9ah1').id,document.getElementById('m9aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m9aapts" name="m9aapts" onchange="games(document.getElementById('m9ahpts').id,this.id,document.getElementById('m9ah1').id,document.getElementById('m9aa1').id)"type="text" ></td>
 <td id="m9ah1"></td>
 <td id="m9aa1"></td>
 </tr>
@@ -351,15 +352,15 @@ function games(match1,match2, home,away){
 <td rowspan="2"><?php echo $row['L2f']." ".$row['L2s']." & ",$row['M3f']." ".$row['M3s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AL2f']." ".$row['AL2s']." & ",$row['AM3f']." ".$row['AM3s'];?></td>
-<td><input id="m10hpts"  onchange="games(this.id,document.getElementById('m10apts').id,document.getElementById('m10h1').id,document.getElementById('m10a1').id)" type="text" ></td>
-<td><input id="m10apts" onchange="games(document.getElementById('m10hpts').id,this.id,document.getElementById('m10h1').id,document.getElementById('m10a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m10hpts" name="m10hpts" onchange="games(this.id,document.getElementById('m10apts').id,document.getElementById('m10h1').id,document.getElementById('m10a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m10apts" name="m10apts"onchange="games(document.getElementById('m10hpts').id,this.id,document.getElementById('m10h1').id,document.getElementById('m10a1').id)"type="text" ></td>
 <td id="m10h1"></td>
 <td id="m10a1"></td>
 </tr>
 
 <tr>
-<td><input id="m10ahpts"  onchange="games(this.id,document.getElementById('m10aapts').id,document.getElementById('m10ah1').id,document.getElementById('m10aa1').id)" type="text" ></td>
-<td><input id="m10aapts" onchange="games(document.getElementById('m10ahpts').id,this.id,document.getElementById('m10ah1').id,document.getElementById('m10aa1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m10ahpts" name="m10ahpts"  onchange="games(this.id,document.getElementById('m10aapts').id,document.getElementById('m10ah1').id,document.getElementById('m10aa1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m10aapts" name="m10aapts" onchange="games(document.getElementById('m10ahpts').id,this.id,document.getElementById('m10ah1').id,document.getElementById('m10aa1').id)"type="text" ></td>
 <td id="m10ah1"></td>
 <td id="m10aa1"></td>
 </tr>
@@ -374,7 +375,7 @@ function games(match1,match2, home,away){
 <td id="awaygamestotals"></td>
 </table>
 
-<!--<input type="submit" value="Submit" name="inputresult">-->
+<input id="subres" type="submit" value="Submit" name="inputresult" style="display:none;">
 
 
 
