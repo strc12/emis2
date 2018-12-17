@@ -5,16 +5,23 @@
 
     <title>EMIS Badminton</title>
 
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script>
+  $(function() {
+    $("#navigation").load("navbar.php");
+    });
+</script>
 </head>
 <body>
-<a href="login.php">LOGIN</a><br>
-<a href="Players.php">PLAYERS</a><br>
-<a href="fixtures.php">FIXTURES</a><br>
-<a href="Schools.php">SCHOOLS</a><br>
-<a href="Teams.php">TEAMS</a><br>
-<a href="Results.php">RESULTS</a><br>
-<a href="Enterresults.php">ENTER RESULTS</a><br>
-<a href="Logout.php">LOGOUT</a><br>
+<div id="navigation"></div>
+<div class="container-fluid" style="margin-top:80px">
+EMIS BADMINTON SITE
+</div>
 
 
 

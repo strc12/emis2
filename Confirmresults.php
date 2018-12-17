@@ -12,7 +12,7 @@ print_r($_POST);
 $stmt = $conn->prepare("UPDATE fixtures set M1H1=:m1h1,M2H1=:m2h1,M3H1=:m3h1,M3H1=:m3h1,M4H1=:m4h1,M4H2=:m4h2,M5H1=:m5h1,M5H2=:m5h2,
 M6H1=:m6h1,M6H2=:m6h2,M7H1=:m7h1,M7H2=:m7h2,M8H1=:m8h1,M8H2=:m8h2,M9H1=:m9h1,M9H2=:m9h2,M10H1=:m10h1,M10H2=:m10h2,
 M1A1=:m1a1,M2A1=:m2a1,M3A1=:m3a1,M3A1=:m3a1,M4A1=:m4a1,M4A2=:m4a2,M5A1=:m5a1,M5A2=:m5a2,
-M6A1=:m6a1,M6A2=:m6a2,M7A1=:m7a1,M7A2=:m7a2,M8A1=:m8a1,M8A2=:m8a2,M9A1=:m9a1,M9A2=:m9a2,M10A1=:m10a1,M10A2=:m10a2
+M6A1=:m6a1,M6A2=:m6a2,M7A1=:m7a1,M7A2=:m7a2,M8A1=:m8a1,M8A2=:m8a2,M9A1=:m9a1,M9A2=:m9a2,M10A1=:m10a1,M10A2=:m10a2, ScoresEntered=1
  WHERE FixtureID=:fid");
 $stmt->bindParam(':fid', $_POST["FixID"]);
 $stmt->bindParam(':m1h1', $_POST["m1hpts"]);
@@ -59,6 +59,6 @@ $stmt->execute();
 $conn=null;
 $_SESSION["fid"]=$_POST["FixID"];
 echo $_SESSION["fid"];
-//header("Location:index.php");
-//echo("doine");
+header("Location:index.php");
+
 ?>

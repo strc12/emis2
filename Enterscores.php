@@ -118,10 +118,13 @@ function checkfilled(){
         return 0;
     }
 }
-function games(match1,match2, home,away){
+function games(match1,match2, home,away,box){
 
         var homescore=parseInt(document.getElementById(match1).value);
         var awayscore=parseInt(document.getElementById(match2).value);
+        console.log(homescore);
+        console.log(awayscore);
+        console.log(box)
         if(homescore>21 || homescore<0){
             alert("invalid score Home team " + homescore);
             document.getElementById(match1).value='';
@@ -168,7 +171,7 @@ function games(match1,match2, home,away){
         }else if (homescore<awayscore&&(homescore==21 ||awayscore==21)){
             document.getElementById(home).innerHTML = "0";
             document.getElementById(away).innerHTML = "1";           
-        }
+        } 
     if (checkfilled()!=1) {
         document.getElementById("but").style.display='block';
     }else{
@@ -176,15 +179,27 @@ function games(match1,match2, home,away){
     }
     }
 </script>
-</Head>
-<Body>
+  <script>
+  $(function() {
+    $("#navigation").load("navbar.php");
+    });
+</script>
+<style>
+    td,th[colspan="2"], th[rowspan="2"]{
+    text-align:center;
+    }
+</style>
+</head>
+<body>
+<div id="navigation"></div>
+<div class="container-fluid" style="margin-top:80px">
 <h3>Scores</h3>
 
 <form action ="Confirmresults.php" method="POST">
 <?php echo("<input type='hidden'  name='FixID' value=".$_SESSION['fid'].">");?>
-<table style = "width:80%" class="table-striped table-bordered table-condensed">
+<table style = "width:80%" class="table-bordered table-condensed">
 <tr>
-<th rowspan="2">Match No.</th>
+<th rowspan="2">No</th>
 <th rowspan="2"><?php echo $row['HS']." ".$row['hd'];?></th>
 <th rowspan="2"> </th>
 <th rowspan="2"><?php echo $row['AWS']." ".$row['ad'];?></th>
@@ -380,6 +395,7 @@ function games(match1,match2, home,away){
 
 
 </form>
+</div>
 <div id="but" style="display:none;">
     <button  onclick="totalscores()">Calculate totals</button>
 </div>

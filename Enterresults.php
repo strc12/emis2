@@ -34,8 +34,15 @@ function showresult(str) {
     }
 }
 </script>
-</head>
-<body>
+    <script>
+    $(function() {
+      $("#navigation").load("navbar.php");
+      });
+  </script>
+  </head>
+  <body>
+  <div id="navigation"></div>
+  <div class="container-fluid" style="margin-top:80px">
 <form action="Selectplayers.php" method="POST">
 <label>Fixture: </label>
 <select id="matches" onchange="showresult(this.value)">
@@ -48,7 +55,7 @@ function showresult(str) {
    INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
    INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
    INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
-   ORDER BY fixtdate ASC" );
+   WHERE ScoresEntered=0 ORDER BY fixtdate ASC" );
 
 
 
@@ -72,7 +79,7 @@ $("#matches").on("change", function(){
     var selected=$(this).val();
     $("#results").html("You selected: " + selected);
   })</script>
-
+</div>
 
 </body>
 </html>

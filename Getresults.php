@@ -172,52 +172,63 @@ if($row["M10H2"] > $row["M10A2"]){
 
 echo($row["FixtDate"]."<br>");
 echo("<table style = 'width:60%'  class=' table-bordered table-condensed'>");
-echo("<thead class='thead-dark'></thead><tr><th></th><th>Home</th><th>Away</th></tr>");
-echo("<tr><th></th><th>".$row["HS"]."</th><th>".$row["AWS"]."</th></tr></thead>");
+echo("<thead class='thead-dark'></thead><tr><th colspan='3'></th><th>Home</th><th>Away</th><th></th><th></th></tr>");
+echo("<tr><th colspan='3'></th><th>".$row["HS"]."</th><th>".$row["AWS"]."</th><th></th><th></th></tr></thead>");
 
-echo("<tr></tr><td>Man1</td><td>".$row["M1f"]." ".$row["M1s"]."</td><td>".$row["AM1f"]." ".$row["AM1s"]."</td><td></td><td></td></tr>");
-echo("<tr></tr><td>Man2</td><td>".$row["M2f"]." ".$row["M2s"]."</td><td>".$row["AM2f"]." ".$row["AM2s"]."</td><td></td><td></td></tr>");
-echo("<tr></tr><td>Man3</td><td>".$row["M3f"]." ".$row["M3s"]."</td><td>".$row["AM3f"]." ".$row["AM3s"]."</td><td></td><td></td></tr>");
-echo("<tr></tr><td>Lady1</td><td>".$row["L1f"]." ".$row["L1s"]."</td><td>".$row["AL1f"]." ".$row["AL1s"]."</td><td></td><td></td></tr>");
-echo("<tr></tr><td>Lady2</td><td>".$row["L2f"]." ".$row["L2s"]."</td><td>".$row["AL2f"]." ".$row["AL2s"]."</td><td></td><td></td></tr>");
-echo("<tr></tr><td>Lady3</td><td>".$row["L3f"]." ".$row["L3s"]."</td><td>".$row["AL3f"]." ".$row["AL3s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Man1</td><td>".$row["M1f"]." ".$row["M1s"]."</td><td>".$row["AM1f"]." ".$row["AM1s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Man2</td><td>".$row["M2f"]." ".$row["M2s"]."</td><td>".$row["AM2f"]." ".$row["AM2s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Man3</td><td>".$row["M3f"]." ".$row["M3s"]."</td><td>".$row["AM3f"]." ".$row["AM3s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Lady1</td><td>".$row["L1f"]." ".$row["L1s"]."</td><td>".$row["AL1f"]." ".$row["AL1s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Lady2</td><td>".$row["L2f"]." ".$row["L2s"]."</td><td>".$row["AL2f"]." ".$row["AL2s"]."</td><td></td><td></td></tr>");
+echo("<tr></tr><td colspan='3'>Lady3</td><td>".$row["L3f"]." ".$row["L3s"]."</td><td>".$row["AL3f"]." ".$row["AL3s"]."</td><td></td><td></td></tr>");
 echo("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["M1f"]." v ".$row["AM1f"]."</td><td>".$row["M1H1"]."</td><td>".$row["M1A1"]."</td><td>".($row["M1H1"] > $row["M1A1"]?"1":"0")."</td><td>".($row["M1H1"] < $row["M1A1"]?1:0)."</td></tr>");
+echo("<tr></tr><td>".$row["M1f"]."</td><td>v</td><td>".$row["AM1f"]."</td><td>".$row["M1H1"]."</td><td>".$row["M1A1"]."</td>
+<td>".($row["M1H1"] > $row["M1A1"]?1:0)."<td>".($row["M1H1"] < $row["M1A1"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L1f"]." v ".$row["AL1f"]."</td><td>".$row["M2H1"]."</td><td>".$row["M2A1"]."</td><td>".($row["M2H1"] > $row["M2A1"]?"1":"0")."</td><td>".($row["M2H1"] < $row["M2A1"]?1:0)."</td></tr>");
+echo("<tr></tr><td>".$row["L1f"]."</td><td>v</td><td>".$row["AL1f"]."</td><td>".$row["M2H1"]."</td><td>".$row["M2A1"]."</td>
+<td>".($row["M2H1"] > $row["M2A1"]?1:0)."<td>".($row["M2H1"] < $row["M2A1"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["M2f"]." and ".$row["M3f"]."</td><td>".$row["M3H1"]."</td><td>".$row["M3A1"]."</td><td>".($row["M3H1"] > $row["M3A1"]?"1":"0")."</td><td>".($row["M3H1"] < $row["M3A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AM2f"]." and ".$row["AM3f"]."</td><td>".$row["M3H2"]."</td><td>".$row["M3A2"]."</td><td>".($row["M3H2"] > $row["M3A2"]?"1":"0")."</td><td>".($row["M3H2"] < $row["M3A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["M2f"]." and ".$row["M3f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AM2f"]." and ".$row["AM3f"]."</td>
+<td>".$row["M3H1"]."</td><td>".$row["M3A1"]."</td><td>".($row["M3H1"] > $row["M3A1"]?1:0)."</td><td>".($row["M3H1"] < $row["M3A1"]?1:0)."</td></tr>
+<td>".$row["M3H2"]."</td><td>".$row["M3A2"]."</td><td>".($row["M3H2"] > $row["M3A2"]?1:0)."</td><td>".($row["M3H2"] < $row["M3A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L2f"]." and ".$row["L3f"]."</td><td>".$row["M4H1"]."</td><td>".$row["M4A1"]."</td><td>".($row["M4H1"] > $row["M4A1"]?"1":"0")."</td><td>".($row["M4H1"] < $row["M4A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL2f"]." and ".$row["AL3f"]."</td><td>".$row["M4H2"]."</td><td>".$row["M4A2"]."</td><td>".($row["M4H2"] > $row["M4A2"]?"1":"0")."</td><td>".($row["M4H2"] < $row["M4A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L2f"]." and ".$row["L3f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL2f"]." and ".$row["AL3f"]."</td>
+<td>".$row["M4H1"]."</td><td>".$row["M4A1"]."</td><td>".($row["M4H1"] > $row["M4A1"]?1:0)."</td><td>".($row["M4H1"] < $row["M4A1"]?1:0)."</td></tr>
+<td>".$row["M4H2"]."</td><td>".$row["M4A2"]."</td><td>".($row["M4H2"] > $row["M4A2"]?1:0)."</td><td>".($row["M4H2"] < $row["M4A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["M1f"]." and ".$row["M2f"]."</td><td>".$row["M5H1"]."</td><td>".$row["M5A1"]."</td><td>".($row["M5H1"] > $row["M5A1"]?"1":"0")."</td><td>".($row["M5H1"] < $row["M5A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AM1f"]." and ".$row["AM2f"]."</td><td>".$row["M5H2"]."</td><td>".$row["M5A2"]."</td><td>".($row["M5H2"] > $row["M5A2"]?"1":"0")."</td><td>".($row["M5H2"] < $row["M5A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["M1f"]." and ".$row["M2f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AM1f"]." and ".$row["AM2f"]."</td>
+<td>".$row["M5H1"]."</td><td>".$row["M5A1"]."</td><td>".($row["M5H1"] > $row["M5A1"]?1:0)."</td><td>".($row["M5H1"] < $row["M5A1"]?1:0)."</td></tr>
+<td>".$row["M5H2"]."</td><td>".$row["M5A2"]."</td><td>".($row["M5H2"] > $row["M5A2"]?1:0)."</td><td>".($row["M5H2"] < $row["M5A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L1f"]." and ".$row["L2f"]."</td><td>".$row["M6H1"]."</td><td>".$row["M6A1"]."</td><td>".($row["M6H1"] > $row["M6A1"]?"1":"0")."</td><td>".($row["M6H1"] < $row["M6A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL1f"]." and ".$row["AL2f"]."</td><td>".$row["M6H2"]."</td><td>".$row["M6A2"]."</td><td>".($row["M6H2"] > $row["M6A2"]?"1":"0")."</td><td>".($row["M6H2"] < $row["M6A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L1f"]." and ".$row["L2f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL1f"]." and ".$row["AL2f"]."</td>
+<td>".$row["M6H1"]."</td><td>".$row["M6A1"]."</td><td>".($row["M6H1"] > $row["M6A1"]?1:0)."</td><td>".($row["M6H1"] < $row["M6A1"]?1:0)."</td></tr>
+<td>".$row["M6H2"]."</td><td>".$row["M6A2"]."</td><td>".($row["M6H2"] > $row["M6A2"]?1:0)."</td><td>".($row["M6H2"] < $row["M6A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L3f"]." and ".$row["M3f"]."</td><td>".$row["M7H1"]."</td><td>".$row["M7A1"]."</td><td>".($row["M7H1"] > $row["M7A1"]?"1":"0")."</td><td>".($row["M7H1"] < $row["M7A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL3f"]." and ".$row["AM3f"]."</td><td>".$row["M7H2"]."</td><td>".$row["M7A2"]."</td><td>".($row["M7H2"] > $row["M7A2"]?"1":"0")."</td><td>".($row["M7H2"] < $row["M7A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L3f"]." and ".$row["M3f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL3f"]." and ".$row["AM3f"]."</td>
+<td>".$row["M7H1"]."</td><td>".$row["M7A1"]."</td><td>".($row["M7H1"] > $row["M7A1"]?1:0)."<td>".($row["M7H1"] < $row["M7A1"]?1:0)."</td></tr>
+<td>".$row["M7H2"]."</td><td>".$row["M7A2"]."</td><td>".($row["M7H2"] > $row["M7A2"]?1:0)."<td>".($row["M7H2"] < $row["M7A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L1f"]." and ".$row["M1f"]."</td><td>".$row["M8H1"]."</td><td>".$row["M8A1"]."</td><td>".($row["M8H1"] > $row["M8A1"]?"1":"0")."</td><td>".($row["M8H1"] < $row["M8A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL1f"]." and ".$row["AM1f"]."</td><td>".$row["M8H2"]."</td><td>".$row["M8A2"]."</td><td>".($row["M8H2"] > $row["M8A2"]?"1":"0")."</td><td>".($row["M8H2"] < $row["M8A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L1f"]." and ".$row["M1f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL1f"]." and ".$row["AM1f"]."</td>
+<td>".$row["M8H1"]."</td><td>".$row["M8A1"]."</td><td>".($row["M8H1"] > $row["M8A1"]?1:0)."<td>".($row["M8H1"] < $row["M8A1"]?1:0)."</td></tr>
+<td>".$row["M8H2"]."</td><td>".$row["M8A2"]."</td><td>".($row["M8H2"] > $row["M8A2"]?1:0)."<td>".($row["M8H2"] < $row["M8A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L3f"]." and ".$row["M2f"]."</td><td>".$row["M9H1"]."</td><td>".$row["M9A1"]."</td><td>".($row["M9H1"] > $row["M9A1"]?"1":"0")."</td><td>".($row["M9H1"] < $row["M9A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL3f"]." and ".$row["AM2f"]."</td><td>".$row["M9H2"]."</td><td>".$row["M9A2"]."</td><td>".($row["M9H2"] > $row["M9A2"]?"1":"0")."</td><td>".($row["M9H2"] < $row["M9A2"]?1:0)."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L3f"]." and ".$row["M2f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL3f"]." and ".$row["AM2f"]."</td>
+<td>".$row["M9H1"]."</td><td>".$row["M9A1"]."</td><td>".($row["M9H1"] > $row["M9A1"]?1:0)."<td>".($row["M9H1"] < $row["M9A1"]?1:0)."</td></tr>
+<td>".$row["M9H2"]."</td><td>".$row["M9A2"]."</td><td>".($row["M9H2"] > $row["M9A2"]?1:0)."<td>".($row["M9H2"] < $row["M9A2"]?1:0)."</td></tr>");
 echo("<tr><td></td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["L2f"]." and ".$row["M3f"]."</td><td>".$row["M10H1"]."</td><td>".$row["M10A1"]."</td><td>".($row["M10H1"] > $row["M10A1"]?"1":"0")."</td><td>".($row["M10H1"] < $row["M10A1"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td></td><td></td></tr>");
-echo("<tr></tr><td>".$row["AL2f"]." and ".$row["AM3f"]."</td><td>".$row["M10H2"]."</td><td>".$row["M10A2"]."</td><td>".($row["M10H2"] > $row["M10A2"]?"1":"0")."</td><td>".($row["M10H2"] < $row["M10A2"]?1:0)."</td></tr>");
-echo("<tr><td>v</td><td>".$Hometotal."</td><td>".$Awaytotal."</td><td>".$homegametotal."</td><td>".$awaygametotal."</td></tr>");
+
+echo("<tr></tr><td rowspan='2'>".$row["L2f"]." and ".$row["M3f"]."</td><td rowspan='2'>v</td><td rowspan='2'>".$row["AL2f"]." and ".$row["AM3f"]."</td>
+<td>".$row["M10H1"]."</td><td>".$row["M10A1"]."</td><td>".($row["M10H1"] > $row["M10A1"]?1:0)."<td>".($row["M10H1"] < $row["M10A1"]?1:0)."</td></tr>
+<td>".$row["M10H2"]."</td><td>".$row["M10A2"]."</td><td>".($row["M10H2"] > $row["M10A2"]?1:0)."<td>".($row["M10H2"] < $row["M10A2"]?1:0)."</td></tr>");
+echo("<tr><td></td><td></td><td></td></tr>");
+echo("<tr><td></td><td></td><td>Totals</td><td>".$Hometotal."</td><td>".$Awaytotal."</td><td>".$homegametotal."</td><td>".$awaygametotal."</td></tr>");
 echo("</table>");
 $conn=null;
 
