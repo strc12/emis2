@@ -21,7 +21,7 @@
         <a class="nav-link" href="Results.php">View Results</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">View Stats</a>
+        <a class="nav-link" href="Statistics.php">View Stats</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Players.php">Add Players</a>
@@ -34,6 +34,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Enterresults.php">Add results</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Tables.php">View Tables</a>
       </li>
     </ul>
   

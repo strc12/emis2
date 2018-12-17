@@ -241,8 +241,8 @@ function games(match1,match2, home,away,box){
 <td rowspan="2"><?php echo $row['M2f']." ".$row['M2s']." & ",$row['M3f']." ".$row['M3s'];?></td>
 <td rowspan="2">v</td>
 <td rowspan="2"><?php echo $row['AM2f']." ".$row['AM2s']." & ",$row['AM3f']." ".$row['AM3s'];?></td>
-<td><input autocomplete="off" id="m3hpts" name="m3ahpts" onchange="games(this.id,document.getElementById('m3apts').id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)" type="text" ></td>
-<td><input autocomplete="off" id="m3apts" name="m3aapts" onchange="games(document.getElementById('m3hpts').id,this.id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)"type="text" ></td>
+<td><input autocomplete="off" id="m3hpts" name="m3hpts" onchange="games(this.id,document.getElementById('m3apts').id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)" type="text" ></td>
+<td><input autocomplete="off" id="m3apts" name="m3apts" onchange="games(document.getElementById('m3hpts').id,this.id,document.getElementById('m3h1').id,document.getElementById('m3a1').id)"type="text" ></td>
 <td id="m3h1"></td>
 <td id="m3a1"></td>
 </tr>
@@ -390,7 +390,7 @@ function games(match1,match2, home,away,box){
 <td id="awaygamestotals"></td>
 </table>
 
-<input id="subres" type="submit" value="Submit" name="inputresult" style="display:none;">
+<input id="subres" type="submit" value="Submit"  style="display:none;">
 
 
 

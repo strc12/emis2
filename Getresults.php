@@ -9,11 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <style>
-.table td.fit, 
-.table th.fit {
-    white-space: nowrap;
-    width: 1%;
-}
+
 td,th{
     text-align:center;
 }
@@ -171,7 +167,7 @@ if($row["M10H2"] > $row["M10A2"]){
 }
 
 echo($row["FixtDate"]."<br>");
-echo("<table style = 'width:60%'  class=' table-bordered table-condensed'>");
+echo("<table style = 'width:60%'  class='table-bordered table-condensed'>");
 echo("<thead class='thead-dark'></thead><tr><th colspan='3'></th><th>Home</th><th>Away</th><th></th><th></th></tr>");
 echo("<tr><th colspan='3'></th><th>".$row["HS"]."</th><th>".$row["AWS"]."</th><th></th><th></th></tr></thead>");
 

@@ -47,7 +47,7 @@ function showresult(str) {
 <form>
 <label>Fixture: </label>
 <select id="matches" onchange="showresult(this.value)">
-    <option></option>select match</option>
+    <option>Select match</option>
    <?php
    include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
@@ -64,7 +64,6 @@ function showresult(str) {
    
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
    {
-       //make into table at some point
        echo("<option value=".$row["FixtureID"].'>'.$row["HS"]." ".$row["hd"]." v ".$row["AWS"]." ".$row["ad"]." - ".$row["fixtdate"]."</option><br>");
    }
    $conn=null;
