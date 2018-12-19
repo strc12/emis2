@@ -43,7 +43,7 @@ function showresult(str) {
   </head>
   <body>
   <div id="navigation"></div>
-  <div class="container-fluid" style="margin-top:80px">
+  <div class="container-fluid" style="margin-top:10px">
 <form>
 <label>Fixture: </label>
 <select id="matches" onchange="showresult(this.value)">

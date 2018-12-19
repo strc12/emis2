@@ -26,7 +26,7 @@
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
+<div class="container-fluid" style="margin-top:10px">
 <H1>Player Statistics</H1>
 <?php
 include_once ("connect.php");

@@ -8,7 +8,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 if($row) {
   if (!isset($_SESSION['name']))
   {
-      header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+    header("Location:index.php");
   }
 
 }
@@ -35,28 +35,35 @@ if($row) {
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
-<form action="AddSchools.php" method= "POST">
-  School name:<input type="text" name="Schoolname"><br>
-  User name:<input type="text" name="Username"><br>
-  Password:<input type="password" name="Pword"><br>
+<div class="container-fluid" style="margin-top:10px">
 
-  <input type="submit" value="Add School">
+<form action="AddSchools.php" method= "POST">
+  <div class="form-group" style="width:50%">
+
+  School name:<input class="form-control" type="text" name="Schoolname"><br>
+  Teacher name:<input class="form-control" type="text" name="Teachername"><br>
+  User name:<input class="form-control" type="text" name="Username"><br>
+  Password:<input class="form-control" type="password" name="Pword"><br>
+
+  <input class="btn btn-primary mb-2" type="submit" value="Add School">
 </form>
+</div>
+<h3>Registered schools and staff</h3>
 <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM Schools" );
+$stmt = $conn->prepare("SELECT * FROM Schools ORDER BY Schoolname Asc" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
     //make into table at some point
-    echo($row["SchoolID"].','.$row["Schoolname"].",".$row["Username"]."<br>");
+    echo($row["Schoolname"].' - '.$row["Teachername"]."<br>");
 }
 $conn=null;
 ?>
 
 </select>
 <br>
+
 </div>
 </body>
 </html>

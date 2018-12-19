@@ -26,7 +26,7 @@ td,th,thead{
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
+<div class="container-fluid" style="margin-top:10px">
 <h2>League Tables:</h2>
 
 <?php

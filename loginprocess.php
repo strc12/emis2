@@ -10,6 +10,7 @@ array_map("htmlspecialchars", $_POST);
 
 
 
+
 $stmt = $conn->prepare("SELECT * FROM Schools WHERE Username =:username ;" );
 $stmt->bindParam(':username', $_POST['Username']);
 
@@ -20,11 +21,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     $attempt= $_POST['Pword'];
     if(password_verify($attempt,$hashed)){
         $_SESSION['name']=$row["Username"];
+        $_SESSION['Teachername']=$row["Teachername"];
         header('Location: '.$redirect);
     }else{
-        header('Location: Login.php');
+        header('Location: index.php');
     }
 }
 $conn=null;
-
+header('Location: index.php');
 ?>

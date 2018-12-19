@@ -19,16 +19,17 @@
 <div id="navigation"></div>
 <div class="container-fluid" style="margin-top:80px">
 <form action="loginprocess.php" method= "POST">
+<div class="form-group">
 <?php
 echo '<input type="hidden" name="location" value="';
 if(isset($_GET['location'])) {
     echo htmlspecialchars($_GET['location']);
-}
+}else{$_GET['Location']="index.php";}
 echo '" />'
 ?>
-  User name:<input type="text" name="Username"><br>
-  Password:<input type="password" name="Pword"><br>
-  
+  User name:<input class="form-group" type="text" name="Username"><br>
+  Password:<input class="form-group" type="password" name="Pword"><br>
+  </div>
   <input type="submit" value="Login">
 </form>
 </div>

@@ -19,11 +19,33 @@
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
-EMIS BADMINTON SITE
+<div class="jumbotron jumbotron-fluid">
+  <div class="container" style="text-align:center">
+    <h1 >EMIS BADMINTON</h1> 
+  </div>
 </div>
-
-
-
+<div class="container text-center">
+  <h3>The Schools</h3>
+  <p><em>We love Badminton!</em></p>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <p><strong>Stamford</strong></p><br>
+      <img class="img-fluid" src="images/Stamford.png" alt="Stamford">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Oakham</strong></p><br>
+      <img class="img-fluid" src="images/Oakham.jpg" alt="Oakham">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Uppingham</strong></p><br>
+      <img class="img-fluid" src="images/Uppingham.png" alt="Uppingham">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Oundle</strong></p><br>
+      <img class="img-fluid" src="images/Oundle.jpeg" alt="Oundle">
+    </div>
+  </div>
+</div>
 </body>
 </html>

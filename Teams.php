@@ -3,7 +3,8 @@ session_start();
 
 if (!isset($_SESSION['name']))
 {
-    header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+    header("Location:index.php");
+    //header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
     //sends referring page as get to login page for correct redirection afterwards
 }
 ?>
@@ -27,33 +28,39 @@ if (!isset($_SESSION['name']))
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
+<div class="container-fluid" style="margin-top:10px">
 
 
 <form action="Addteam.php" method="POST">
-School:<select name="SchoolID">
-  <?php
-include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM Schools" );
-$stmt->execute();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{
-    echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
-}
-//$conn=null;
-?>
+<div class="form-group" style="width:30%">
+    School:<select class="form-control" name="SchoolID">
+    <?php
+        include_once ("connect.php");
+        $stmt = $conn->prepare("SELECT * FROM Schools" );
+        $stmt->execute();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+            echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
+        }
+        //$conn=null;
+        ?>
 
-</select>
-<br>
-  <!--Creates a drop down list-->
-  Gender:<br>
-  <input type="radio" name="division" value="A" checked> A team<br>
-  <input type="radio" name="division" value="B"> B Team<br>
-  <br>
+        </select>
+        <br>
+    <div class="radio">
+        <label><input type="radio" name="division" value="A" checked>A team</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="division" value="B">B team</label>
+    </div>
 
 
-  <input type="submit" value="Add Team">
+
+
+     <input class="btn btn-primary mb-2" type="submit" value="Add Team">
+</div>
 </form>
+<br>
 <?php
 
 $stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
@@ -61,7 +68,7 @@ $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
     //make into table at some point
-    echo($row["SchoolID"].','.$row["Schoolname"].",".$row["Division"]."<br>");
+    echo($row["Schoolname"]." ".$row["Division"]."<br>");
 }
 $conn=null;
 ?>

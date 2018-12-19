@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['name']))
 {
-    header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+  header("Location:index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -26,32 +26,68 @@ if (!isset($_SESSION['name']))
 </head>
 <body>
 <div id="navigation"></div>
-<div class="container-fluid" style="margin-top:80px">
+<div class="container-fluid" style="margin-top:10px">
 <form action="Addplayer.php" method="POST">
-  First name:<input type="text" name="forename"><br>
-  Last name:<input type="text" name="surname"><br>
-  <!--Creates a drop down list-->
-  Gender:<select name="gender">
-		<option value="M">Male</option>
-		<option value="F">Female</option>
-	</select>
-  <br>
-  School:<select name="SchoolID">
-  <?php
-include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM Schools" );
-$stmt->execute();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{
-    echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
-}
-$conn=null;
-?>
+  <div class="form-group" style="width:50%">
+    First name:<input autocomplete="off"  class="form-control"  type="text" name="forename"><br>
+    Last name:<input autocomplete="off" class="form-control" type="text" name="surname"><br>
+    <!--Creates a drop down list-->
+    Gender:<select class="form-control"  name="gender">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+    <br>
+    School:<select class="form-control"  name="SchoolID">
+    <?php
+      include_once ("connect.php");
+      $stmt = $conn->prepare("SELECT * FROM Schools" );
+      $stmt->execute();
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+          echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
+      }
+      
+    ?>
 
-</select>
-
-  <input type="submit" value="Add Player">
+    </select>
+    </div>
+  <input class="btn btn-primary mb-2" type="submit" value="Add Player">
+  
 </form>
+
+<div class="container text-center">
+  <h3>The Players</h3>
+  <br>
+  <div class="row">
+  <?php 
+    $stmt = $conn->prepare("SELECT * FROM Schools ORDER BY Schoolname Asc" );
+    $stmt->execute();
+    $count=$stmt->rowCount();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+    {
+        //make into table at some point
+        
+      $schID=$row["SchoolID"];
+      $sch=$row["Schoolname"];
+      echo('<div class="col-sm-'.(12/$count).'">');
+      echo("<p><strong>".$sch."</strong></p><br>");
+      
+
+        $stmt2 = $conn->prepare("SELECT * FROM players WHERE School=".$schID." ORDER BY Gender Asc,Surname ASC" );
+        $stmt2->execute();
+        while ($plyr = $stmt2->fetch(PDO::FETCH_ASSOC))
+        {
+          echo($plyr["Forename"].' '.$plyr["Surname"]."<br>");
+        }
+
+    
+    echo("</div>");
+    }
+    ?>
+    
+  </div>
+  
+</div>
 
 </div>
 </body>
