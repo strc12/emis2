@@ -491,14 +491,14 @@ while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
 }
 echo("<table id='players' style = 'width:100%'  class='table table-striped table-bordered' role='grid'>");
 echo("<thead><th>Forename</th><th>Surname</th><th>School</th><th>Win Percentage</th><th>Played</th><th>Games Won</th><th>Games Lost</th><th>Points for</th><th>Points against</th><th>avg points difference</th></thead><tbody>");
-foreach ($leagueA AS $plyr){
-    foreach($plyr as $bob){
+foreach ($leagueA AS $plyr=>$bob){
+    //foreach($plyr as $bob){
         echo("<tr><td>".$bob['forename']."</td><td>".$bob['surname']."</td><td>".$bob['school']."</td>
         <td>".$percent=round((($bob['gameswon'] /($bob['gameswon'] +$bob['gameslost'] ))*100),2)."%</td>
         <td>".$bob['gamesplayed']."</td><td>".$bob['gameswon']."</td><td>".$bob['gameslost']."</td>
         <td>".$bob['pointsfor']."</td><td>".$bob['pointsagainst']."</td>
         <td>".number_format((((int)$bob['pointsfor']-(int)$bob['pointsagainst'])/(int)$bob['gamesplayed']),2)."</td></tr>");
-    }
+    //}
 }
 echo("</tbody></table>");
 //print_r($leagueA);

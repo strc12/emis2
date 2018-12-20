@@ -47,11 +47,11 @@ $q = intval($_GET['q']);
 //echo ($q);
 include_once ("connect.php");
 $stmt3=$conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate,home.teamID as HT, hsch.schoolID as HSID, awsc.schoolID as ASID,
-awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM Fixtures 
-INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
-INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
-INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
-INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
+awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM fixtures 
+INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
+INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
+INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
+INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
 WHERE fixtures.FixtureID=:id");
 $stmt3->bindParam(':id', $q);
 $stmt3->execute();

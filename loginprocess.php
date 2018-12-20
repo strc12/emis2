@@ -11,7 +11,7 @@ array_map("htmlspecialchars", $_POST);
 
 
 
-$stmt = $conn->prepare("SELECT * FROM Schools WHERE Username =:username ;" );
+$stmt = $conn->prepare("SELECT * FROM schools WHERE Username =:username ;" );
 $stmt->bindParam(':username', $_POST['Username']);
 
 $stmt->execute();

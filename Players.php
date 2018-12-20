@@ -41,7 +41,7 @@ if (!isset($_SESSION['name']))
     School:<select class="form-control"  name="SchoolID">
     <?php
       include_once ("connect.php");
-      $stmt = $conn->prepare("SELECT * FROM Schools" );
+      $stmt = $conn->prepare("SELECT * FROM schools" );
       $stmt->execute();
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
       {
@@ -65,7 +65,7 @@ if (!isset($_SESSION['name']))
   <br>
   <div class="row">
   <?php 
-    $stmt = $conn->prepare("SELECT * FROM Schools ORDER BY Schoolname Asc" );
+    $stmt = $conn->prepare("SELECT * FROM schools ORDER BY Schoolname Asc" );
     $stmt->execute();
     $count=$stmt->rowCount();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC))

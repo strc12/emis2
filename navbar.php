@@ -1,3 +1,6 @@
+<?php
+      session_start();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +62,7 @@
         <a class="nav-link" href="#">Hi '.$_SESSION['Teachername'].'</a>
         </li> 
       <li class="nav-item">
-        <a class="nav-link" href="Logout.php">Logout</a>
+        <a class="nav-link" href="logout.php">Logout</a>
       </li>');
       }else{
         echo('<form class="form-inline" action="loginprocess.php" method="post">');

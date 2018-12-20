@@ -2,7 +2,7 @@
 include_once ("connect.php");
 //create Players table
 $stmt = $conn->prepare("DROP TABLE IF EXISTS Players; 
-CREATE TABLE Players (UserID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE players (UserID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Gender VARCHAR(1) NOT NULL,
 Surname VARCHAR(20) NOT NULL,
 Forename VARCHAR(20) NOT NULL,
@@ -14,7 +14,7 @@ $stmt->closeCursor();
 echo ("Players created<br>");
 //create Teams table 
 $stmt2 = $conn->prepare("DROP TABLE IF EXISTS Teams;
-CREATE TABLE Teams (TeamID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE teams (TeamID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 SchoolID INT(2) NOT NULL,
 Division VARCHAR(1) NOT NULL);
 ");
@@ -23,17 +23,18 @@ $stmt2->closeCursor();
 echo ("Teams created<br>");
 //Create schools table ?Hash passwords?
 $stmt4 = $conn->prepare("DROP TABLE IF EXISTS Schools;
-CREATE TABLE Schools (SchoolID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE schools (SchoolID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Schoolname  VARCHAR(20) NOT NULL,
 Username VARCHAR(20) NOT NULL,
-Pword VARCHAR(60) NOT NULL);
+Pword VARCHAR(60) NOT NULL,
+Teachername VARCHAR(60) NOT NULL);
 ");
 //must be 60 if hashed
 $stmt4->execute();
 $stmt4->closeCursor();
 echo ("Schools created<br>");
 $stmt3 = $conn->prepare("DROP TABLE IF EXISTS Fixtures;
-CREATE TABLE Fixtures (FixtureID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Fixtures (fixtureID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 HomeID INT(4) NOT NULL,
 AwayID INT(4) NOT NULL,
 FixtDate DATE NOT NULL,
@@ -92,10 +93,11 @@ $stmt3->execute();
 $stmt3->closeCursor(); // allows query to complete
 echo ("Fixtures created<br>");
 $hashed_password = password_hash("squirt", PASSWORD_DEFAULT);
-$stmt4 = $conn->prepare("INSERT INTO Schools VALUES (NULL,Oundle,ric,:Pword,Rob);" );
-$stmt4->bindParam(':Pword', $hashed_password);
-$stmt4->execute();
+$stmt5 = $conn->prepare("INSERT INTO schools VALUES (NULL,'Oundle','ric',:Pword,'Rob');" );
+$stmt5->bindParam(':Pword', $hashed_password);
+$stmt5->execute();
 echo("user added");
+$stmt5->closeCursor();
 $conn=null;
 
 ?>

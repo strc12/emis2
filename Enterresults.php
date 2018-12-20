@@ -51,11 +51,11 @@ function showresult(str) {
    <?php
    include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
-   awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM Fixtures 
-   INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
-   INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
-   INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
-   INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
+   awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM fixtures 
+   INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
+   INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
+   INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
+   INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
    WHERE ScoresEntered=0 and season=:season ORDER BY fixtdate ASC" );
   $stmt->bindParam(':season', $_SEASON);
 

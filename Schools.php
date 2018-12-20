@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM Schools" );
+$stmt = $conn->prepare("SELECT * FROM schools" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   //checks if row exists in database
@@ -52,7 +52,7 @@ if($row) {
 <h3>Registered schools and staff</h3>
 <?php
 include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM Schools ORDER BY Schoolname Asc" );
+$stmt = $conn->prepare("SELECT * FROM schools ORDER BY Schoolname Asc" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {

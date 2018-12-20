@@ -49,8 +49,8 @@ include "setseason.php";
         Away Team:<select class="form-control" name="AwayID">
         <?php
         include_once ("connect.php");
-        $stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams 
-        INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
+        $stmt = $conn->prepare("SELECT teams.Teamid, schools.Schoolname, teams.Division, teams.SchoolID FROM teams 
+        INNER JOIN schools ON teams.SchoolID = schools.SchoolID" );
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
@@ -75,11 +75,11 @@ include "setseason.php";
 $today = strtotime(date("d-m-Y")); 
 $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, season,
 awsc.Schoolname as AWS, hsch.Schoolname as HS, 
-home.Division, away.Division FROM Fixtures 
-INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
-INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
-INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
-INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
+home.Division, away.Division FROM fixtures 
+INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
+INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
+INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
+INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
 WHERE season=:season ORDER BY fixtdate DESC" );
 $stmt->bindParam(':season', $_SEASON);
 $stmt->execute();

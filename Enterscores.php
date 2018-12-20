@@ -10,18 +10,18 @@ if (!isset($_SESSION['name']))
 ?>
 <?php
 include_once ("connect.php");
-$stmt=$conn->prepare("SELECT Fixtures.FixtDate, 
-Fixtures.M1H1,Fixtures.M1A1,
-Fixtures.M2H1,Fixtures.M2A1,
-Fixtures.M3H1,Fixtures.M3A1,Fixtures.M3H2,Fixtures.M3A2,
-Fixtures.M4H1,Fixtures.M4A1,Fixtures.M4H2,Fixtures.M4A2,
-Fixtures.M5H1,Fixtures.M5A1,Fixtures.M5H2,Fixtures.M5A2,
-Fixtures.M6H1,Fixtures.M6A1,Fixtures.M6H2,Fixtures.M6A2,
-Fixtures.M7H1,Fixtures.M7A1,Fixtures.M7H2,Fixtures.M7A2,
-Fixtures.M8H1,Fixtures.M8A1,Fixtures.M8H2,Fixtures.M8A2,
-Fixtures.M9H1,Fixtures.M9A1,Fixtures.M9H2,Fixtures.M9A2,
-Fixtures.M10H1,Fixtures.M10A1,Fixtures.M10H2,Fixtures.M10A2,
-Fixtures.HomeID as Home, Fixtures.AwayID as Away,  
+$stmt=$conn->prepare("SELECT fixtures.FixtDate, 
+fixtures.M1H1,fixtures.M1A1,
+fixtures.M2H1,fixtures.M2A1,
+fixtures.M3H1,fixtures.M3A1,fixtures.M3H2,fixtures.M3A2,
+fixtures.M4H1,fixtures.M4A1,fixtures.M4H2,fixtures.M4A2,
+fixtures.M5H1,fixtures.M5A1,fixtures.M5H2,fixtures.M5A2,
+fixtures.M6H1,fixtures.M6A1,fixtures.M6H2,fixtures.M6A2,
+fixtures.M7H1,fixtures.M7A1,fixtures.M7H2,fixtures.M7A2,
+fixtures.M8H1,fixtures.M8A1,fixtures.M8H2,fixtures.M8A2,
+fixtures.M9H1,fixtures.M9A1,fixtures.M9H2,fixtures.M9A2,
+fixtures.M10H1,fixtures.M10A1,fixtures.M10H2,fixtures.M10A2,
+fixtures.HomeID as Home, fixtures.AwayID as Away,  
 M1.Forename as M1f, M1.Surname as M1s, 
 M2.Forename as M2f, M2.Surname as M2s,
 M3.Forename as M3f, M3.Surname as M3s,
@@ -37,23 +37,23 @@ AL3.Forename as AL3f, AL3.Surname as AL3s,
 awsc.Schoolname as AWS, hsch.Schoolname as HS, 
 home.Division as hd, away.Division as ad
 FROM Fixtures 
-INNER JOIN  Players as M1 on HM1ID = M1.UserID
-INNER JOIN  Players as M2 on HM2ID = M2.UserID
-INNER JOIN  Players as M3 on HM3ID = M3.UserID
-INNER JOIN  Players as L1 on HL1ID = L1.UserID
-INNER JOIN  Players as L2 on HL2ID = L2.UserID
-INNER JOIN  Players as L3 on HL3ID = L3.UserID
-INNER JOIN  Players as AM1 on AM1ID = AM1.UserID
-INNER JOIN  Players as AM2 on AM2ID = AM2.UserID
-INNER JOIN  Players as AM3 on AM3ID = AM3.UserID
-INNER JOIN  Players as AL1 on AL1ID = AL1.UserID
-INNER JOIN  Players as AL2 on AL2ID = AL2.UserID
-INNER JOIN  Players as AL3 on AL3ID = AL3.UserID
-INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
-INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
-INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
-INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
-WHERE Fixtures.FixtureID=:id" );
+INNER JOIN  players as M1 on HM1ID = M1.UserID
+INNER JOIN  players as M2 on HM2ID = M2.UserID
+INNER JOIN  players as M3 on HM3ID = M3.UserID
+INNER JOIN  players as L1 on HL1ID = L1.UserID
+INNER JOIN  players as L2 on HL2ID = L2.UserID
+INNER JOIN  players as L3 on HL3ID = L3.UserID
+INNER JOIN  players as AM1 on AM1ID = AM1.UserID
+INNER JOIN  players as AM2 on AM2ID = AM2.UserID
+INNER JOIN  players as AM3 on AM3ID = AM3.UserID
+INNER JOIN  players as AL1 on AL1ID = AL1.UserID
+INNER JOIN  players as AL2 on AL2ID = AL2.UserID
+INNER JOIN  players as AL3 on AL3ID = AL3.UserID
+INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
+INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
+INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
+INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
+WHERE fixtures.FixtureID=:id" );
 $stmt->bindParam(':id', $_SESSION['fid']);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);

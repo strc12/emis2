@@ -11,7 +11,7 @@ array_map("htmlspecialchars", $_POST);
 
 print_r($_POST);
 $hashed_password = password_hash($_POST["Pword"], PASSWORD_DEFAULT);
-$stmt = $conn->prepare("INSERT INTO Schools VALUES (NULL,:Schoolname,:Username,:Pword,:Teachername);" );
+$stmt = $conn->prepare("INSERT INTO schools VALUES (NULL,:Schoolname,:Username,:Pword,:Teachername);" );
 $stmt->bindParam(':Schoolname', $_POST['Schoolname']);
 $stmt->bindParam(':Teachername', $_POST['Teachername']);
 $stmt->bindParam(':Username', $_POST['Username']);
