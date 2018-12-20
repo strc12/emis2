@@ -1,5 +1,6 @@
 <?php
 session_start();
+header("Location: index.php");
 include "setseason.php";
 if (!isset($_SESSION['name']))
 {
