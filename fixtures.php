@@ -85,7 +85,7 @@ $stmt->bindParam(':season', $_SEASON);
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{
+{   
    if(strtotime($row["fixtdate"])<$today){
     echo("<p style='color:red'>".$row["HS"]." ".$row["Division"]." v ".$row["AWS"].$row["Division"]." - ".date("d/m/y",(strtotime($row["fixtdate"])))."</p>");
    }else{

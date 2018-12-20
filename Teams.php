@@ -37,7 +37,7 @@ if (!isset($_SESSION['name']))
     School:<select class="form-control" name="SchoolID">
     <?php
         include_once ("connect.php");
-        $stmt = $conn->prepare("SELECT * FROM Schools" );
+        $stmt = $conn->prepare("SELECT * FROM schools" );
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
@@ -64,7 +64,7 @@ if (!isset($_SESSION['name']))
 <br>
 <?php
 
-$stmt = $conn->prepare("SELECT Teams.Teamid, Schools.Schoolname, Teams.Division, Teams.SchoolID FROM Teams INNER JOIN Schools ON Teams.SchoolID = Schools.SchoolID" );
+$stmt = $conn->prepare("SELECT teams.Teamid, schools.Schoolname, teams.Division, teams.SchoolID FROM teams INNER JOIN schools ON teams.SchoolID = schools.SchoolID" );
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {

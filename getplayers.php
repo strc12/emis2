@@ -28,7 +28,8 @@
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $School=$row["Schoolname"];
       echo("<h3>".$School." players</h3>");
-      $stmt1 = $conn->prepare("SELECT Forename, Surname, UserID, Schoolname, Active FROM players INNER JOIN schools ON players.School=schools.SchoolID WHERE School=".$q );
+      $stmt1 = $conn->prepare("SELECT Forename, Surname, UserID, Schoolname, Active FROM players INNER JOIN schools ON players.School=schools.SchoolID WHERE School=:fid ORDER BY Active DESC,Surname ASC ");
+      $stmt1->bindParam(':fid', $q);
       $stmt1->execute();
       while ($row = $stmt1->fetch(PDO::FETCH_ASSOC))
       {

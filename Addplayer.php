@@ -1,6 +1,6 @@
-
 <?php
 session_start();
+header("Location:Players.php");
 
 if (!isset($_SESSION['name']))
 {
@@ -17,5 +17,5 @@ $stmt->bindParam(':School', $_POST["SchoolID"]);
 $stmt->bindParam(':Gender', $_POST["gender"]);
 
 $stmt->execute();
-header("Location:Players.php");
+
 ?>

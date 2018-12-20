@@ -67,9 +67,9 @@ INNER JOIN teams as home ON (fixtures.HomeID = home.teamID)
 INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
 INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
 INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-WHERE fixtures.FixtureID=".$q."AND season=:season" );
+WHERE fixtures.FixtureID=:fid AND fixtures.season=:season" );
 $stmt->bindParam(':season', $_SEASON);
-
+$stmt->bindParam(':fid', $q);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $Hometotal=$row["M1H1"]+$row["M2H1"]+$row["M3H1"]+$row["M3H2"]+$row["M4H1"]+$row["M4H2"]+$row["M5H1"]+$row["M5H2"]+$row["M6H1"]+$row["M6H2"]+$row["M7H1"]+$row["M7H2"]+$row["M8H1"]+$row["M8H2"]+$row["M9H1"]+$row["M9H2"]+$row["M10H1"]+$row["M10H2"];

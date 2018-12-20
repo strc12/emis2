@@ -37,18 +37,18 @@ WHERE Active=1" );
 $stmt1->execute();
 while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
 {
-    $stmt = $conn->prepare("SELECT Fixtures.FixtDate, 
-    Fixtures.M1H1,Fixtures.M1A1,
-    Fixtures.M2H1,Fixtures.M2A1,
-    Fixtures.M3H1,Fixtures.M3A1,Fixtures.M3H2,Fixtures.M3A2,
-    Fixtures.M4H1,Fixtures.M4A1,Fixtures.M4H2,Fixtures.M4A2,
-    Fixtures.M5H1,Fixtures.M5A1,Fixtures.M5H2,Fixtures.M5A2,
-    Fixtures.M6H1,Fixtures.M6A1,Fixtures.M6H2,Fixtures.M6A2,
-    Fixtures.M7H1,Fixtures.M7A1,Fixtures.M7H2,Fixtures.M7A2,
-    Fixtures.M8H1,Fixtures.M8A1,Fixtures.M8H2,Fixtures.M8A2,
-    Fixtures.M9H1,Fixtures.M9A1,Fixtures.M9H2,Fixtures.M9A2,
-    Fixtures.M10H1,Fixtures.M10A1,Fixtures.M10H2,Fixtures.M10A2,
-    Fixtures.HomeID as Home, Fixtures.AwayID as Away,FixtureID,
+    $stmt = $conn->prepare("SELECT fixtures.FixtDate, 
+    fixtures.M1H1,fixtures.M1A1,
+    fixtures.M2H1,fixtures.M2A1,
+    fixtures.M3H1,fixtures.M3A1,fixtures.M3H2,fixtures.M3A2,
+    fixtures.M4H1,fixtures.M4A1,fixtures.M4H2,fixtures.M4A2,
+    fixtures.M5H1,fixtures.M5A1,fixtures.M5H2,fixtures.M5A2,
+    fixtures.M6H1,fixtures.M6A1,fixtures.M6H2,fixtures.M6A2,
+    fixtures.M7H1,fixtures.M7A1,fixtures.M7H2,fixtures.M7A2,
+    fixtures.M8H1,fixtures.M8A1,fixtures.M8H2,fixtures.M8A2,
+    fixtures.M9H1,fixtures.M9A1,fixtures.M9H2,fixtures.M9A2,
+    fixtures.M10H1,fixtures.M10A1,fixtures.M10H2,fixtures.M10A2,
+    fixtures.HomeID as Home, fixtures.AwayID as Away,FixtureID,
     M1.UserID as M1U, 
     M2.UserID as M2U, 
     M3.UserID as M3U, 
@@ -65,23 +65,23 @@ while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
     awsc.SchoolID as AWSID, hsch.SchoolID as HSID,
     home.teamID as HTID, away.teamID as ATID,
     home.Division as AWD, away.Division as HD
-    FROM Fixtures 
-    INNER JOIN  Players as M1 on HM1ID = M1.UserID
-    INNER JOIN  Players as M2 on HM2ID = M2.UserID
-    INNER JOIN  Players as M3 on HM3ID = M3.UserID
-    INNER JOIN  Players as L1 on HL1ID = L1.UserID
-    INNER JOIN  Players as L2 on HL2ID = L2.UserID
-    INNER JOIN  Players as L3 on HL3ID = L3.UserID
-    INNER JOIN  Players as AM1 on AM1ID = AM1.UserID
-    INNER JOIN  Players as AM2 on AM2ID = AM2.UserID
-    INNER JOIN  Players as AM3 on AM3ID = AM3.UserID
-    INNER JOIN  Players as AL1 on AL1ID = AL1.UserID
-    INNER JOIN  Players as AL2 on AL2ID = AL2.UserID
-    INNER JOIN  Players as AL3 on AL3ID = AL3.UserID
-    INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
-    INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
-    INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
-    INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID");
+    FROM fixtures 
+    INNER JOIN  players as M1 on HM1ID = M1.UserID
+    INNER JOIN  players as M2 on HM2ID = M2.UserID
+    INNER JOIN  players as M3 on HM3ID = M3.UserID
+    INNER JOIN  players as L1 on HL1ID = L1.UserID
+    INNER JOIN  players as L2 on HL2ID = L2.UserID
+    INNER JOIN  players as L3 on HL3ID = L3.UserID
+    INNER JOIN  players as AM1 on AM1ID = AM1.UserID
+    INNER JOIN  players as AM2 on AM2ID = AM2.UserID
+    INNER JOIN  players as AM3 on AM3ID = AM3.UserID
+    INNER JOIN  players as AL1 on AL1ID = AL1.UserID
+    INNER JOIN  players as AL2 on AL2ID = AL2.UserID
+    INNER JOIN  players as AL3 on AL3ID = AL3.UserID
+    INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
+    INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
+    INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
+    INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID");
     $stmt->execute();
     $totpts=0;
     $totgames=0;
@@ -491,232 +491,24 @@ while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
 }
 echo("<table id='players' style = 'width:100%'  class='table table-striped table-bordered' role='grid'>");
 echo("<thead><th>Forename</th><th>Surname</th><th>School</th><th>Win Percentage</th><th>Played</th><th>Games Won</th><th>Games Lost</th><th>Points for</th><th>Points against</th><th>avg points difference</th></thead><tbody>");
-foreach ($leagueA AS $plyr=>$bob){
-    //foreach($plyr as $bob){
-        echo("<tr><td>".$bob['forename']."</td><td>".$bob['surname']."</td><td>".$bob['school']."</td>
-        <td>".$percent=round((($bob['gameswon'] /($bob['gameswon'] +$bob['gameslost'] ))*100),2)."%</td>
-        <td>".$bob['gamesplayed']."</td><td>".$bob['gameswon']."</td><td>".$bob['gameslost']."</td>
-        <td>".$bob['pointsfor']."</td><td>".$bob['pointsagainst']."</td>
-        <td>".number_format((((int)$bob['pointsfor']-(int)$bob['pointsagainst'])/(int)$bob['gamesplayed']),2)."</td></tr>");
-    //}
+foreach ($leagueA AS $plyr=>$dave){
+    foreach($dave as $eric=>$bob){
+        echo("<tr><td>".$bob['forename']."</td><td>".$bob['surname']."</td><td>".$bob['school']."</td>");
+        if(($bob['gameswon'] +$bob['gameslost'] )==0){
+                echo("<td>0%</td>");
+        }else{
+                echo("<td>".$percent=round((($bob['gameswon'] /($bob['gameswon'] +$bob['gameslost'] ))*100),2)."%</td>");
+        }
+        echo("<td>".$bob['gamesplayed']."</td><td>".$bob['gameswon']."</td><td>".$bob['gameslost']."</td>");
+        echo("<td>".$bob['pointsfor']."</td><td>".$bob['pointsagainst']."</td>");
+        if($bob['gamesplayed']==0){
+                echo("<td>0</td></tr>");
+        }else{
+                echo("<td>".number_format((((int)$bob['pointsfor']-(int)$bob['pointsagainst'])/(int)$bob['gamesplayed']),2)."</td></tr>");
+        }
+    }
 }
 echo("</tbody></table>");
-//print_r($leagueA);
-            /* ((int)$row["M2U"]==(int)$player["UserID"])||
-            ((int)$row["M3U"]==(int)$player["UserID"] )||
-            ((int)$row["L1U"]==(int)$player["UserID"] )||
-            ((int)$row["L2U"]==(int)$player["UserID"] )||
-            ((int)$row["L3U"]==(int)$player["UserID"] )||
-            ((int)$row["AM1U"]==(int)$player["UserID"] )||
-            ((int)$row["AM2U"]==(int)$player["UserID"] )||
-            ((int)$row["AM3U"]==(int)$player["UserID"] )||
-            ((int)$row["AL1U"]==(int)$player["UserID"] )||
-            ((int)$row["AL2U"]==(int)$player["UserID"] )||
-            ((int)$row["AL3U"]==(int)$player["UserID"] )){
-                $totpts+=$row[Hometotal;
-                $totptsagainst+=$Awaytotal;
-                $homegametotal=0;
-                $gameslost=0;
-                if($row["M1H1"] > $row["M1A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M2H1"] > $row["M2A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M3H1"] > $row["M3A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M3H2"] > $row["M3A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M4H1"] > $row["M4A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M4H2"] > $row["M4A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M5H1"] > $row["M5A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M5H2"] > $row["M5A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M6H1"] > $row["M6A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M6H2"] > $row["M6A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M7H1"] > $row["M7A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M7H2"] > $row["M7A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M8H1"] > $row["M8A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M8H2"] > $row["M8A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M9H1"] > $row["M9A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M9H2"] > $row["M9A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M10H1"] > $row["M10A1"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M10H2"] > $row["M10A2"]){
-                    $homegametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                $totgames+=$homegametotal;
-                $totgameslost+=$gameslost;
-            }else if ((int)$row["ATID"]==(int)$player["TID"]){
-                $totpts+=$Awaytotal;
-                $totptsagainst+=$Hometotal;
-                $awaygametotal=0;
-                $gameslost=0;
-                if($row["M1H1"] < $row["M1A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M2H1"] < $row["M2A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M3H1"] < $row["M3A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M3H2"] < $row["M3A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M4H1"] < $row["M4A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M4H2"] < $row["M4A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M5H1"] < $row["M5A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M5H2"] < $row["M5A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M6H1"] < $row["M6A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M6H2"] < $row["M6A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M7H1"] < $row["M7A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M7H2"] < $row["M7A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M8H1"] < $row["M8A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M8H2"] < $row["M8A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M9H1"] < $row["M9A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M9H2"] < $row["M9A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M10H1"] < $row["M10A1"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }
-                if($row["M10H2"] < $row["M10A2"]){
-                    $awaygametotal+=1;
-                }else{
-                    $gameslost+=1;
-                }   
-                $totgames+=$awaygametotal;         
-                $totgameslost+=$gameslost;
-            }  
-        }
-
-        $teamres=array('forename'=>$player['Forename'],'surname'=>$player['Surname'],'played'=>$count, 'gameswon'=>$totgames,'gameslost'=>$totgameslost,'pointsfor'=>$totpts,'pointsagainst'=>$totptsagainst);
-        $leagueA[]=$teamres;
-    }
-}      
-
-    
-
-*/
 
 ?>
 

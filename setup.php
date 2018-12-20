@@ -1,7 +1,7 @@
 <?php
 include_once ("connect.php");
 //create Players table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS Players; 
+$stmt = $conn->prepare("DROP TABLE IF EXISTS players; 
 CREATE TABLE players (UserID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Gender VARCHAR(1) NOT NULL,
 Surname VARCHAR(20) NOT NULL,
@@ -13,7 +13,7 @@ $stmt->execute();
 $stmt->closeCursor();
 echo ("Players created<br>");
 //create Teams table 
-$stmt2 = $conn->prepare("DROP TABLE IF EXISTS Teams;
+$stmt2 = $conn->prepare("DROP TABLE IF EXISTS teams;
 CREATE TABLE teams (TeamID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 SchoolID INT(2) NOT NULL,
 Division VARCHAR(1) NOT NULL);
@@ -22,7 +22,7 @@ $stmt2->execute();
 $stmt2->closeCursor();
 echo ("Teams created<br>");
 //Create schools table ?Hash passwords?
-$stmt4 = $conn->prepare("DROP TABLE IF EXISTS Schools;
+$stmt4 = $conn->prepare("DROP TABLE IF EXISTS schools;
 CREATE TABLE schools (SchoolID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Schoolname  VARCHAR(20) NOT NULL,
 Username VARCHAR(20) NOT NULL,
@@ -33,8 +33,9 @@ Teachername VARCHAR(60) NOT NULL);
 $stmt4->execute();
 $stmt4->closeCursor();
 echo ("Schools created<br>");
-$stmt3 = $conn->prepare("DROP TABLE IF EXISTS Fixtures;
-CREATE TABLE Fixtures (fixtureID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+$stmt3 = $conn->prepare("DROP TABLE IF EXISTS fixtures;
+CREATE TABLE fixtures (fixtureID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+Season VARCHAR(3),
 HomeID INT(4) NOT NULL,
 AwayID INT(4) NOT NULL,
 FixtDate DATE NOT NULL,
@@ -85,8 +86,7 @@ M9A2 INT(2),
 M10H1 INT(2),
 M10H2 INT(2),
 M10A1 INT(2),
-M10A2 INT(2));
-Played INT(1) NOT NULL DEFAULT (0);
+M10A2 INT(2)),
 ScoresEntered INT(1) NOT NULL DEFAULT(0);
 ");
 $stmt3->execute();
@@ -98,6 +98,12 @@ $stmt5->bindParam(':Pword', $hashed_password);
 $stmt5->execute();
 echo("user added");
 $stmt5->closeCursor();
+$stmt6 = $conn->prepare("DROP TABLE IF EXISTS currentseason;
+CREATE TABLE currentseason (currentseason VARCHAR(3)");
+$stmt6->execute();
+echo("Currentseason added");
+$stmt6->closeCursor();
+
 $conn=null;
 
 ?>

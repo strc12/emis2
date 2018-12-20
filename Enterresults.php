@@ -49,6 +49,7 @@ function showresult(str) {
 <select id="matches" onchange="showresult(this.value)">
     <option></option>select match</option>
    <?php
+   echo($_SEASON);
    include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
    awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM fixtures 

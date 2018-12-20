@@ -51,10 +51,10 @@ if($row) {
 </div>
 <h3>Registered schools and staff</h3>
 <?php
-include_once ("connect.php");
-$stmt = $conn->prepare("SELECT * FROM schools ORDER BY Schoolname Asc" );
-$stmt->execute();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+//include_once ("connect.php");
+$stmt1 = $conn->prepare("SELECT * FROM schools ORDER BY Schoolname Asc" );
+$stmt1->execute();
+while ($row = $stmt1->fetch(PDO::FETCH_ASSOC))
 {
     //make into table at some point
     echo($row["Schoolname"].' - '.$row["Teachername"]."<br>");

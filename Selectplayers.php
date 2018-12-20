@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-//boo
+header("Location:Enterscores.php");
 if (!isset($_SESSION['name']))
 {
     header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
@@ -30,6 +30,6 @@ $stmt->execute();
 $conn=null;
 $_SESSION["fid"]=$_POST["FixID"];
 echo $_SESSION["fid"];
-header("Location:Enterscores.php");
+
 //echo("doine");
 ?>

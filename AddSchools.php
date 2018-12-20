@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['name']))
 {
     header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
@@ -19,5 +20,4 @@ $stmt->bindParam(':Pword', $hashed_password);
 
 $stmt->execute();
 $conn=null;
-header("Location:Schools.php");
-?>
+header("Location:Schools.php");?>

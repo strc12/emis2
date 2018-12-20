@@ -77,7 +77,7 @@ foreach($leagues as $div){
         awsc.SchoolID as AWSID, hsch.SchoolID as HSID,
         home.teamID as HTID, away.teamID as ATID,
         home.Division as AWD, away.Division as HD
-        FROM Fixtures 
+        FROM fixtures 
         INNER JOIN  players as M1 on HM1ID = M1.UserID
         INNER JOIN  players as M2 on HM2ID = M2.UserID
         INNER JOIN  players as M3 on HM3ID = M3.UserID
