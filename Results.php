@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="images/favicon.ico">
 <script>
 //Script calls Getresults.php passing the val from drop down to it PHP script creates visual of match results and them placed in results DIV
 function showresult(str) {
@@ -64,7 +65,7 @@ function showresult(str) {
    
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
    {
-       echo("<option value=".$row["FixtureID"].'>'.$row["HS"]." ".$row["hd"]." v ".$row["AWS"]." ".$row["ad"]." - ".$row["fixtdate"]."</option><br>");
+       echo("<option value=".$row["FixtureID"].'>'.$row["HS"]." ".$row["hd"]." v ".$row["AWS"]." ".$row["ad"]." - ".date("d M y",(strtotime($row["fixtdate"])))."</option><br>");
    }
    $conn=null;
    ?>

@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  
+  <link rel="shortcut icon" href="images/favicon.ico">
 <style>
 .table td.fit, 
 .table th.fit {
@@ -23,7 +23,7 @@ td,th{
 function popdropdown($sch,$sex,$position){
 	echo "<select name='$position' id='$position'>";
 	include ('connect.php');//hides connection details
-    $stmt=$conn->prepare("SELECT forename, surname, userID FROM players where School = ".$sch." and Gender='".$sex."'");
+    $stmt=$conn->prepare("SELECT forename, surname, userID FROM players where School = ".$sch." and Gender='".$sex."' AND Active=1");
     $stmt->bindParam(':sid', $sch);
     $stmt->bindParam(':sex', $sex);
     $stmt->execute();   
@@ -107,7 +107,7 @@ echo("<input type='hidden'  name='FixID' value=".$row['FixtureID'].">");
     <td>Man 3</td>
     <td><?php popdropdown($away,'M','awayman3');?></td>
     </tr>
-    <tr><td colspan="4"><input type="submit" value="Submit players"></td></tr>
+    <tr><td colspan="4"><input class="btn btn-primary mb-2" type="submit" value="Submit players"></td></tr>
     </table>
 
     

@@ -18,6 +18,7 @@ if (!isset($_SESSION['name']))
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="images/favicon.ico">
   <script>
   $(function() {
     $("#navigation").load("navbar.php");
@@ -44,7 +45,11 @@ if (!isset($_SESSION['name']))
       $stmt->execute();
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
       {
+        if($_SESSION["SchoolID"]==$row["SchoolID"]){
+          echo("<option selected='selected' value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
+        }else{
           echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
+        }
       }
       
     ?>
@@ -73,7 +78,7 @@ if (!isset($_SESSION['name']))
       echo("<p><strong>".$sch."</strong></p><br>");
       
 
-        $stmt2 = $conn->prepare("SELECT * FROM players WHERE School=".$schID." ORDER BY Gender Asc,Surname ASC" );
+        $stmt2 = $conn->prepare("SELECT * FROM players WHERE School=".$schID." AND Active=1 ORDER BY Gender Asc,Surname ASC" );
         $stmt2->execute();
         while ($plyr = $stmt2->fetch(PDO::FETCH_ASSOC))
         {

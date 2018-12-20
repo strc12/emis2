@@ -22,6 +22,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     if(password_verify($attempt,$hashed)){
         $_SESSION['name']=$row["Username"];
         $_SESSION['Teachername']=$row["Teachername"];
+        $_SESSION['SchoolID']=$row["SchoolID"];
         header('Location: '.$redirect);
     }else{
         header('Location: index.php');

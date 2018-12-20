@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="images/favicon.ico">
 <style>
 
 td,th{
@@ -18,6 +19,7 @@ td,th{
 <body>
 
 <?php
+include ("setseason.php");
 $q = intval($_GET['q']);
 
 
@@ -65,8 +67,8 @@ INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID)
 INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
 INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
 INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
-WHERE Fixtures.FixtureID=".$q );
-
+WHERE Fixtures.FixtureID=".$q."AND season=:season" );
+$stmt->bindParam(':season', $_SEASON);
 
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);

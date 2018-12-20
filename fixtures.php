@@ -6,6 +6,7 @@ if (!isset($_SESSION['name']))
     header("Location:index.php");
     //sends referring page as get to login page for correct redirection afterwards
 }
+include "setseason.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,7 @@ if (!isset($_SESSION['name']))
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="images/favicon.ico">
   <script>
   $(function() {
     $("#navigation").load("navbar.php");
@@ -70,20 +72,21 @@ if (!isset($_SESSION['name']))
 <p>Played in Red</p>
 <?php
 //include_once ("connect.php");
-$today = date("d-m-Y"); 
-$stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
+$today = strtotime(date("d-m-Y")); 
+$stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, season,
 awsc.Schoolname as AWS, hsch.Schoolname as HS, 
 home.Division, away.Division FROM Fixtures 
 INNER JOIN Teams as home ON (Fixtures.HomeID = home.teamID) 
 INNER JOIN  Teams as away ON (Fixtures.AwayID=away.TeamID) 
 INNER JOIN Schools as awsc ON away.SchoolID=awsc.SchoolID 
 INNER JOIN Schools as hsch ON home.SchoolID=hsch.SchoolID 
-ORDER BY fixtdate DESC" );
+WHERE season=:season ORDER BY fixtdate DESC" );
+$stmt->bindParam(':season', $_SEASON);
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-   if(date("d/m/y",(strtotime($row["fixtdate"])))>$today){
+   if(strtotime($row["fixtdate"])<$today){
     echo("<p style='color:red'>".$row["HS"]." ".$row["Division"]." v ".$row["AWS"].$row["Division"]." - ".date("d/m/y",(strtotime($row["fixtdate"])))."</p>");
    }else{
     //make into table at some point

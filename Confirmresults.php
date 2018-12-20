@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+include "setseason.php";
 //boo
 if (!isset($_SESSION['name']))
 {
@@ -52,6 +53,7 @@ $stmt->bindParam(':m9a1', $_POST["m9apts"]);
 $stmt->bindParam(':m9a2', $_POST["m9aapts"]);
 $stmt->bindParam(':m10a1', $_POST["m10apts"]);
 $stmt->bindParam(':m10a2', $_POST["m10aapts"]);
+
 $stmt->execute();
 $conn=null;
 $_SESSION["fid"]=$_POST["FixID"];

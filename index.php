@@ -1,4 +1,5 @@
 
+<?php include "setseason.php";?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <link rel="shortcut icon" href="images/favicon.ico">  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
   <script>
   $(function() {
     $("#navigation").load("navbar.php");
@@ -22,6 +25,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container" style="text-align:center">
     <h1 >EMIS BADMINTON</h1> 
+    <?php include "setseason.php";?>
   </div>
 </div>
 <div class="container text-center">
