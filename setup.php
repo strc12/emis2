@@ -91,6 +91,11 @@ ScoresEntered INT(1) NOT NULL DEFAULT(0);
 $stmt3->execute();
 $stmt3->closeCursor(); // allows query to complete
 echo ("Fixtures created<br>");
+$hashed_password = password_hash("squirt", PASSWORD_DEFAULT);
+$stmt4 = $conn->prepare("INSERT INTO Schools VALUES (NULL,Oundle,ric,:Pword,Rob);" );
+$stmt4->bindParam(':Pword', $hashed_password);
+$stmt4->execute();
+echo("user added");
 $conn=null;
 
 ?>
