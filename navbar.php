@@ -36,7 +36,7 @@
     <a class="nav-link text-warning" href="Players.php">Add Players</a>
     </li>
     <li >
-      <a class="nav-link text-warning" href="fixtures.php#">Add Fixtures</a>
+      <a class="nav-link text-warning" href="fixtures.php">Add Fixture dates</a>
     </li>
     <li >
       <a class="nav-link text-warning" href="Enterresults.php">Add results</a>
@@ -47,6 +47,9 @@
 
   if($_SESSION['name']=='ric'){
     echo('
+    <li>
+      <a class="nav-link text-danger" href="seasonsetup.php">New Season</a>
+    </li>
     <li>
       <a class="nav-link text-danger" href="Schools.php">Add Schools</a>
     </li>

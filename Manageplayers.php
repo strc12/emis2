@@ -66,7 +66,7 @@ function showresult(str) {
         {
             echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
         }
-        //$conn=null;
+
         ?>
          </select>
          
