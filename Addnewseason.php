@@ -1,6 +1,10 @@
 <?php
 session_start();
 header("Location:index.php");
+if (!isset($_SESSION['name']))
+{
+    header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+}
 include "setseason.php";
 include_once ("connect.php");
 if ($_SEASON!=$_POST["season"]){

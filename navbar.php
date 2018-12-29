@@ -72,6 +72,9 @@ echo('<li>
 <a class="nav-link" href="#">Hi '.$_SESSION['Teachername'].'</a>
 </li> 
 <li>
+<a class="nav-link" href="changepassword.php">Change Password</a>
+</li>
+<li>
 <a class="nav-link" href="logout.php">Logout</a>
 </li>');
 }else{
