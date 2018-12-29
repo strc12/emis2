@@ -47,7 +47,7 @@
     </div>
     <div class="col-sm-3">
       <p><strong>Oundle</strong></p><br>
-      <img class="img-fluid" src="images/Oundle.jpeg" alt="Oundle">
+      <img class="img-fluid" src="images/Oundle.png" alt="Oundle">
     </div>
   </div>
 </div>
