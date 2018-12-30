@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-sm-3">
       <p><strong>Stamford</strong></p><br>
-      <img class="img-fluid" src="images/Stamford.png" alt="Stamford">
+      <img class="img-fluid" src="images/stamford.jpg" alt="Stamford">
     </div>
     <div class="col-sm-3">
       <p><strong>Oakham</strong></p><br>
