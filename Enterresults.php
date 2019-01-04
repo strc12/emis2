@@ -79,7 +79,7 @@ function showresult(str) {
 <script>
 $("#matches").on("change", function(){
     var selected=$(this).val();
-    $("#results").html("You selected: " + selected);
+    //$("#results").html("You selected: " + selected);
   })</script>
 </div>
 

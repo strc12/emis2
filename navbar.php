@@ -33,6 +33,9 @@
   <li>
     <a class="nav-link" href="Legacy.php">Pre2019 tables</a>
   </li>
+  <li>
+    <a class="nav-link" href="calendar.php">Fixture Calendar</a>
+  </li>
   <?php
   if(isset($_SESSION['name'])){
     echo('<li >
