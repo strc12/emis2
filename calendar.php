@@ -19,7 +19,7 @@ include "setseason.php";
     });
 
 </script>
-<script>
+<!--<script>
 //Script calls Getresults.php passing the val from drop down to it PHP script creates visual of match results and them placed in results DIV
 function showcalendar(str,month,year) {
     alert("alled");
@@ -49,7 +49,7 @@ function showcalendar(str,month,year) {
         xmlhttp.send();
     }
 }
-</script>
+</script>-->
     <style>
         /* calendar */
     table.calendar		{ border-left:1px solid #999; }
@@ -252,7 +252,7 @@ function build_html_calendar($year, $month, $events = null) {
     inputElement.addEventListener('click', function(){
     gotoNode(result.name);
     });
-    </script> -->
+    </script> 
 <script>
 $("#forwards").on("click", function(){
     var selected=$(this).val();
@@ -262,7 +262,7 @@ $("#forwards").on("click", function(){
     showcalendar(selected,month,year);
     $("#boxy").html("You selected: " + year);
   })
-  </script>
+  </script>-->
 
 </body>
 </html>
