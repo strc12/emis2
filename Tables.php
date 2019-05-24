@@ -33,6 +33,7 @@ td,th,thead{
 <?php
 
 include_once ("connect.php");
+include "setseason.php";
 $leagues=array("A","B");
 
 foreach($leagues as $div){
@@ -49,7 +50,7 @@ foreach($leagues as $div){
 
     while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC))
     {
-        $stmt = $conn->prepare("SELECT fixtures.FixtDate, 
+        $stmt = $conn->prepare("SELECT fixtures.FixtDate, fixtures.Season,
         fixtures.M1H1,fixtures.M1A1,
         fixtures.M2H1,fixtures.M2A1,
         fixtures.M3H1,fixtures.M3A1,fixtures.M3H2,fixtures.M3A2,
@@ -94,9 +95,10 @@ foreach($leagues as $div){
         INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
         INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
         INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-        WHERE (away.TeamID=:AWSID OR home.TeamID=:HSID)" );
+        WHERE (away.TeamID=:AWSID and fixtures.Season=:SEAS) OR (fixtures.Season=:SEAS and home.TeamID=:HSID)" );
         $stmt->bindParam(':AWSID', $row1['TID']);
         $stmt->bindParam(':HSID', $row1['TID']);
+        $stmt->bindParam(':SEAS', $_SEASON);
         $stmt->execute();
         $totpts=0;
         $totgames=0;

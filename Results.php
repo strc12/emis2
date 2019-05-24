@@ -50,17 +50,18 @@ function showresult(str) {
 <select id="matches" onchange="showresult(this.value)">
     <option>Select match</option>
    <?php
+   include "setseason.php";
    include_once ("connect.php");
-   $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, 
+   $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, Season, fixtdate, 
    awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM fixtures 
    INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
    INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
    INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
    INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-   WHERE ScoresEntered=1 ORDER BY fixtdate ASC " );
+   WHERE ScoresEntered=1 and Season=:SEAS ORDER BY fixtdate ASC " );
 
 
-
+   $stmt->bindParam(':SEAS', $_SEASON);
    $stmt->execute();
    
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))

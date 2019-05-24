@@ -31,13 +31,14 @@
 <H1>Player Statistics</H1>
 <?php
 include_once ("connect.php");
+include_once ("setseason.php");
 $stmt1 = $conn->prepare("SELECT schools.Schoolname as SN, Surname, Forename,UserID, Gender FROM players 
 INNER JOIN schools  ON players.School=schools.SchoolID 
 WHERE Active=1" );
 $stmt1->execute();
 while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
 {
-    $stmt = $conn->prepare("SELECT fixtures.FixtDate, 
+    $stmt = $conn->prepare("SELECT fixtures.FixtDate, fixtures.Season,
     fixtures.M1H1,fixtures.M1A1,
     fixtures.M2H1,fixtures.M2A1,
     fixtures.M3H1,fixtures.M3A1,fixtures.M3H2,fixtures.M3A2,
@@ -81,7 +82,9 @@ while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
     INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
     INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
     INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
-    INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID");
+    INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID
+    WHERE fixtures.Season=:SEAS");
+    $stmt->bindParam(':SEAS', $_SEASON);
     $stmt->execute();
     $totpts=0;
     $totgames=0;
