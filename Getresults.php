@@ -68,6 +68,7 @@ INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID)
 INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
 INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
 WHERE fixtures.FixtureID=:fid AND fixtures.season=:season" );
+//$stmt->bindParam(':season', $_POST["season"]);
 $stmt->bindParam(':season', $_SEASON);
 $stmt->bindParam(':fid', $q);
 $stmt->execute();

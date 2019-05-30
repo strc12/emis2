@@ -29,11 +29,22 @@ td,th,thead{
 <div id="navigation"></div>
 <div class="container-fluid" style="margin-top:10px">
 <h2>League Tables:</h2>
-
+<label>Select season</label>
+<select name="season">
+    
 <?php
-
 include_once ("connect.php");
-include "setseason.php";
+include_once ("setseason.php");
+
+$stmt9=$conn->prepare("SELECT seasonname FROM currentseason");
+//$stmt = $conn->prepare("SELECT * FROM currentseason;" );
+$stmt9->execute();
+while ($row = $stmt9->fetch(PDO::FETCH_ASSOC));
+{
+    echo ("<option value='".$_SEASON."'>".$_SEASON."</option>");
+}
+    echo ("</select>");
+
 $leagues=array("A","B");
 
 foreach($leagues as $div){

@@ -29,9 +29,14 @@
 <div id="navigation"></div>
 <div class="container-fluid" style="margin-top:10px">
 <H1>Player Statistics</H1>
+<label>Select season</label>
+<select name="season">
+    
 <?php
 include_once ("connect.php");
 include_once ("setseason.php");
+    echo ("<option value='".$_SEASON."'>".$_SEASON."</option>");
+    echo ("</select>");
 $stmt1 = $conn->prepare("SELECT schools.Schoolname as SN, Surname, Forename,UserID, Gender FROM players 
 INNER JOIN schools  ON players.School=schools.SchoolID 
 WHERE Active=1" );

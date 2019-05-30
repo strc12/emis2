@@ -8,9 +8,9 @@ if (!isset($_SESSION['name']))
 include "setseason.php";
 include_once ("connect.php");
 if ($_SEASON!=$_POST["season"]){
-    $stmt=$conn->prepare("UPDATE currentseason SET currentseason=:newseason WHERE currentseason=:currentseason");
+    //need to check if seasonname already exists before doing this to prevent extra matches being created
+    $stmt=$conn->prepare("INSERT INTO seasons (SeasonID,Term,current,active) VALUES (NULL,:newseason,1,NULL)");
     $stmt->bindParam(':newseason', $_POST['season']);
-    $stmt->bindParam(':currentseason', $_SEASON);
     $stmt->execute();
     $stmtA = $conn->prepare("SELECT * FROM teams WHERE division='A'");
     $stmtA->execute();
