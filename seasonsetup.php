@@ -1,12 +1,15 @@
 <?php
-session_start();
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
 
 if (!isset($_SESSION['name']))
 {
     header("Location:index.php");
     //sends referring page as get to login page for correct redirection afterwards
 }
-include "setseason.php";
+print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +36,8 @@ include "setseason.php";
 <div class="container-fluid" style="margin-top:10px ">
     <h2>SEASON SETUP - Do at beginning of season only</h2>
     <form action="Addnewseason.php" method="POST">
-    <input class="form-control"  style="width:30%" type="text" value="ENTER NEW SEASON CODE" name="season">
+    <input class="form-control"  style="width:30%" type="text" value="ENTER NEW SEASON CODE" name="seasoncode">
+    <input class="form-control"  style="width:30%" type="text" value="ENTER NEW SEASON NAME" name="seasonname">
     <br>
     <input class="btn btn-primary mb-2" type="submit" value="Setup Season">
 </form>

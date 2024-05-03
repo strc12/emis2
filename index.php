@@ -1,5 +1,10 @@
 
-<?php include "setseason.php";?>
+<?php 
+if(session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
+include "setseason.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +29,9 @@
 <div id="navigation"></div>
 <div class="jumbotron jumbotron-fluid">
   <div class="container" style="text-align:center">
-    <h1 >EMIS BADMINTON</h1> 
-    <?php include "setseason.php";?>
+    <h1>EMIS BADMINTON</h1> 
+    <h2>New site for Sept 2024</h2>
+    
   </div>
 </div>
 <div class="container text-center">

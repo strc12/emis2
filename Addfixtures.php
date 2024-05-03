@@ -1,5 +1,5 @@
 <?php
-
+#dead page??
 session_start();
 header("Location:fixtures.php");
 include "setseason.php";

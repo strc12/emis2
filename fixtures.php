@@ -1,12 +1,15 @@
 <?php
-session_start();
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
 
 if (!isset($_SESSION['name']))
 {
     header("Location:index.php");
     //sends referring page as get to login page for correct redirection afterwards
 }
-include "setseason.php";
+print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +37,7 @@ include "setseason.php";
     <h3>Current Fixtures</h3>
     <p>Date not added in Red, other schools fixtures greyed out</p>
     <?php
-    //include_once ("connect.php");
+    include_once ("connect.php");
     $today = strtotime(date("d-m-Y")); 
     $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, fixtdate, season,
     awsc.Schoolname as AWS, hsch.Schoolname as HS, awsc.Username as AWUN, hsch.Username as HUN,
@@ -43,8 +46,10 @@ include "setseason.php";
     INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
     INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
     INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-    WHERE season=:season  ORDER BY fixtdate ASC" );
-    $stmt->bindParam(':season', $_SEASON);
+    WHERE season=:season  ORDER BY fixtdate ASC" );#?possiby only show schools own matches and (HomeID=:hid or Awayid=:aid)
+    $stmt->bindParam(':season', $_SESSION["SEASON"]);
+    #$stmt->bindParam(':hid', $_SESSION["SchoolID"]);
+    #$stmt->bindParam(':aid', $_SESSION["SchoolID"]);
    
     $stmt->execute();
     echo("<table><tbody>");
@@ -53,7 +58,7 @@ include "setseason.php";
         echo("<tr>");
         if((strtotime($row["fixtdate"])==NULL )){
             echo("<td style='color:#FF0000'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date' id='' name='".$row['FixtureID']."' size='9' value='".$row["fixtdate"]."'></td>");
-        }else if ($_SESSION['name']== 'ric'){
+        }else if ($_SESSION['name']== 'admin'){
             echo("<td>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
         }else if ($row["AWUN"]== $_SESSION["name"] ||$row["HUN"]== $_SESSION["name"]){
             echo("<td>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
