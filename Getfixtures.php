@@ -19,6 +19,7 @@
 <select id="matches" onchange="showresult(this.value)">
     <option>Select match</option>
    <?php
+   session_start();
    include "setseason.php";
    include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, Season, fixtdate, 
@@ -30,7 +31,7 @@
    WHERE ScoresEntered=1 and Season=:SEAS ORDER BY fixtdate ASC " );
 
 
-   $stmt->bindParam(':SEAS', $_SEASON);
+   $stmt->bindParam(':SEAS', $_SESSION["SEASON"]);
    $stmt->execute();
    
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))

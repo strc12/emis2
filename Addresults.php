@@ -20,10 +20,15 @@ td,th{
 }
 </style>
 <?php
+
+
 function popdropdown($sch,$sex,$position){
+    
 	echo "<select name='$position' id='$position'>";
+    
 	include ('connect.php');//hides connection details
-    $stmt=$conn->prepare("SELECT forename, surname, userID FROM players where School = ".$sch." and Gender='".$sex."' AND Active=1");
+    
+    $stmt=$conn->prepare("SELECT Forename, Surname, UserID FROM players where School = :sid AND Gender= :sex AND Active=1");
     $stmt->bindParam(':sid', $sch);
     $stmt->bindParam(':sex', $sex);
     $stmt->execute();   
@@ -32,7 +37,7 @@ function popdropdown($sch,$sex,$position){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 	{	
 			//code for drop down list
-			echo '<option value="' . $row['userID'] . '">' . $row['forename'] ." ". $row['surname'] .'</option>';
+			echo '<option value="' . $row['UserID'] . '">' . $row['Forename'] ." ". $row['Surname'] .'</option>';
 			
 	}
     echo("</select>");
@@ -59,6 +64,8 @@ $stmt3->execute();
 $row = $stmt3->fetch(PDO::FETCH_ASSOC);
 $home=$row["HSID"];
 $away=$row["ASID"];
+echo($home);
+echo($away);
 ?>
 <form action ="Selectplayers.php" method="POST" onsubmit="return validateForm()">
 <?php 

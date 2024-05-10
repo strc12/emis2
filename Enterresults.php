@@ -59,7 +59,7 @@ function showresult(str) {
    INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
    INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
    WHERE ScoresEntered=0 and Season=:season ORDER BY fixtdate ASC" );
-  $stmt->bindParam(':season', $_SEASON);
+  $stmt->bindParam(':season', $_SESSION["SEASON"]);
 
 
    $stmt->execute();

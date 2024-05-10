@@ -8,7 +8,7 @@ if (!isset($_SESSION['name']))
     header("Location:index.php");
     //sends referring page as get to login page for correct redirection afterwards
 }
-print_r($_SESSION);
+
 
 ?>
 <!DOCTYPE html>
@@ -46,12 +46,10 @@ print_r($_SESSION);
     INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
     INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
     INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-    WHERE season=:season  ORDER BY fixtdate ASC" );#?possiby only show schools own matches and (HomeID=:hid or Awayid=:aid)
-    $stmt->bindParam(':season', $_SESSION["SEASON"]);
-    #$stmt->bindParam(':hid', $_SESSION["SchoolID"]);
-    #$stmt->bindParam(':aid', $_SESSION["SchoolID"]);
-   
+    WHERE season=:season  ORDER BY fixtdate ASC" );
+    $stmt->bindParam(':season', $_SESSION["SEASON"]);   
     $stmt->execute();
+
     echo("<table><tbody>");
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     {   
@@ -59,7 +57,7 @@ print_r($_SESSION);
         if((strtotime($row["fixtdate"])==NULL )){
             echo("<td style='color:#FF0000'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date' id='' name='".$row['FixtureID']."' size='9' value='".$row["fixtdate"]."'></td>");
         }else if ($_SESSION['name']== 'admin'){
-            echo("<td>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
+            echo("<td style='color:#FF0000'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
         }else if ($row["AWUN"]== $_SESSION["name"] ||$row["HUN"]== $_SESSION["name"]){
             echo("<td>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
         }else{

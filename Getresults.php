@@ -23,6 +23,7 @@ include ("setseason.php");
 $q = intval($_GET['q']);
 
 
+
 include_once ("connect.php");
 $stmt = $conn->prepare("SELECT fixtures.FixtDate, 
 fixtures.M1H1,fixtures.M1A1,
@@ -67,9 +68,7 @@ INNER JOIN teams as home ON (fixtures.HomeID = home.teamID)
 INNER JOIN teams as away ON (fixtures.AwayID=away.TeamID) 
 INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
 INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
-WHERE fixtures.FixtureID=:fid AND fixtures.season=:season" );
-//$stmt->bindParam(':season', $_POST["season"]);
-$stmt->bindParam(':season', $_SEASON);
+WHERE fixtures.FixtureID=:fid " );
 $stmt->bindParam(':fid', $q);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);

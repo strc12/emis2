@@ -34,7 +34,7 @@ function showresult(str) {
         xmlhttp.send();
     }
 }
-function showfixtures(str) {
+/* function showfixtures(str) {
     if (str == "") {
         document.getElementById("fixtures").innerHTML = "";
         return;
@@ -54,7 +54,7 @@ function showfixtures(str) {
         xmlhttp.open("GET","Getfixtures.php?q="+str,true);
         xmlhttp.send();
     }
-}
+} */
 </script>
 
     <script>
@@ -66,38 +66,34 @@ function showfixtures(str) {
   <body>
   <div id="navigation"></div>
   <div class="container-fluid" style="margin-top:10px">
-  <form>
+  <!--<form>
   <label>Select season</label>
   <select id="season" onchange="showfixtures(this.value)">
   
-<?php
-include_once ("connect.php");
-include_once ("setseason.php");
+//<?php
+// include_once ("connect.php");
+// include_once ("setseason.php");
 
-$stmt = $conn->prepare("SELECT * FROM seasons" );
-$stmt->execute();
+// $stmt = $conn->prepare("SELECT * FROM seasonlist" );
+// $stmt->execute();
 
-while ($row2 = $stmt->fetch(PDO::FETCH_ASSOC))
-{
+// while ($row2 = $stmt->fetch(PDO::FETCH_ASSOC))
+// {
 
 
-    //echo($row2["seasonname"]);
-    echo ("<option value=".$row2["SeasonID"].">".$row2["Term"]."</option>");
-}
-    
-    
-    //$conn=null;
-    echo("</select>");
-    //echo ($_SEASON);
-    ?> 
-    </form>
-<div id=fixtures"></div>
-<!-- <label>Fixture: </label>
+//     echo ("<option value=".$row2["seasioncode"].">".$row2["seasonname"]."</option>");
+// }
+//     echo("</select>");
+  
+    //?>  
+    </form> -->
+<!-- <div id=fixtures"></div> -->
+<label>Fixture: </label>
 <select id="matches" onchange="showresult(this.value)">
     <option>Select match</option>
    <?php
-   //include "setseason.php";
-   //include_once ("connect.php");
+   include "setseason.php";
+   include_once ("connect.php");
    $stmt = $conn->prepare("SELECT FixtureID,HomeID, AwayID, Season, fixtdate, 
    awsc.Schoolname as AWS, hsch.Schoolname as HS, home.Division as hd, away.Division as ad FROM fixtures 
    INNER JOIN teams as home ON (fixtures.HomeID = home.teamID) 
@@ -107,7 +103,7 @@ while ($row2 = $stmt->fetch(PDO::FETCH_ASSOC))
    WHERE ScoresEntered=1 and Season=:SEAS ORDER BY fixtdate ASC " );
 
 
-   $stmt->bindParam(':SEAS', $_SEASON);
+   $stmt->bindParam(':SEAS', $_SESSION["SEASON"]);
    $stmt->execute();
    
    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
@@ -118,7 +114,7 @@ while ($row2 = $stmt->fetch(PDO::FETCH_ASSOC))
    ?>
     
 </select>
-</form> -->
+</form>
 <div id="results"></div>
 <script>
 $("#matches").on("change", function(){

@@ -40,14 +40,15 @@ if (!isset($_SESSION['name']))
     <br>
     School:<select class="form-control"  name="SchoolID">
     <?php
+    echo ($_SESSION["SchoolID"]);
       include_once ("connect.php");
       $stmt = $conn->prepare("SELECT * FROM schools" );
       $stmt->execute();
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        if($_SESSION["SchoolID"]==$row["SchoolID"]){
+        if($_SESSION["SchoolID"]==$row["SchoolID"] && ($row["Schoolname"]!="admin")){
           echo("<option selected='selected' value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
-        }else{
+        }else if ($row["Schoolname"]!="admin"){
           echo("<option value=".$row["SchoolID"].'>'.$row["Schoolname"]."</option>");
         }
       }
@@ -75,7 +76,8 @@ if (!isset($_SESSION['name']))
       $schID=$row["SchoolID"];
       $sch=$row["Schoolname"];
       echo('<div class="col-sm-'.(12/$count).'">');
-      echo("<p><strong>".$sch."</strong></p><br>");
+      if ($row["Schoolname"]!="admin"){
+      echo("<p><strong>".$sch."</strong></p><br>");}
       
 
         $stmt2 = $conn->prepare("SELECT * FROM players WHERE School=".$schID." AND Active=1 ORDER BY Gender Asc,Surname ASC" );

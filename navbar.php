@@ -33,9 +33,9 @@
   <li>
     <a class="nav-link" href="Tables.php">View Tables</a>
   </li>
-  <li>
-    <a class="nav-link" href="Legacy.php">Pre2019 tables</a>
-  </li>
+  <!-- <li>
+    <a class="nav-link" href="Legacy.php">Pre2019 tables</a> #removed 2024
+  </li> -->
   <li>
     <a class="nav-link" href="calendar.php">Fixture Calendar</a>
   </li>
@@ -54,7 +54,7 @@
       <a class="nav-link text-warning" href="Manageplayers.php">Manage players</a>
     </li>');
 
-  if($_SESSION['name']=='ric'){
+  if($_SESSION['name']=='ric' or $_SESSION['name']=='admin'){
     echo('
     <li>
       <a class="nav-link text-danger" href="seasonsetup.php">New Season</a>

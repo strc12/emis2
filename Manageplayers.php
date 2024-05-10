@@ -60,7 +60,7 @@ function showresult(str) {
         <?php
         
         include_once ("connect.php");
-        $stmt = $conn->prepare("SELECT  * FROM schools;");
+        $stmt = $conn->prepare("SELECT  * FROM schools where Schoolname <>'admin';");
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {

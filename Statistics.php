@@ -35,7 +35,7 @@
 <?php
 include_once ("connect.php");
 include_once ("setseason.php");
-    echo ("<option value='".$_SEASON."'>".$_SEASON."</option>");
+    echo ("<option value='".$_SESSION["SEASON"]."'>".$_SESSION["SEASON"]."</option>");
     echo ("</select>");
 $stmt1 = $conn->prepare("SELECT schools.Schoolname as SN, Surname, Forename,UserID, Gender FROM players 
 INNER JOIN schools  ON players.School=schools.SchoolID 
@@ -89,7 +89,7 @@ while ($player = $stmt1->fetch(PDO::FETCH_ASSOC))
     INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
     INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID
     WHERE fixtures.Season=:SEAS");
-    $stmt->bindParam(':SEAS', $_SEASON);
+    $stmt->bindParam(':SEAS', $_SESSION["SEASON"]);
     $stmt->execute();
     $totpts=0;
     $totgames=0;
