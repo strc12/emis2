@@ -27,16 +27,16 @@ try {
     $stmt->closeCursor();
     echo ("Players created<br>");
     //create Teams table 
-  /*   $stmt2 = $conn->prepare("DROP TABLE IF EXISTS teams;
+     $stmt2 = $conn->prepare("DROP TABLE IF EXISTS teams;
     CREATE TABLE teams (TeamID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     SchoolID INT(2) NOT NULL,
     Division VARCHAR(1) NOT NULL);
     ");
     $stmt2->execute();
     $stmt2->closeCursor();
-    echo ("Teams created<br>"); */
+    echo ("Teams created<br>"); 
     //Create schools table ?Hash passwords?
-    /* $stmt4 = $conn->prepare("DROP TABLE IF EXISTS schools;
+     $stmt4 = $conn->prepare("DROP TABLE IF EXISTS schools;
     CREATE TABLE schools (SchoolID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     Schoolname  VARCHAR(20) NOT NULL,
     Username VARCHAR(20) NOT NULL,
@@ -45,7 +45,7 @@ try {
     ");
     //must be 200 if hashed (128 bits via md5 hashing)
     $stmt4->execute();
-    $stmt4->closeCursor(); */
+    $stmt4->closeCursor(); 
     echo ("Schools created<br>");
     $stmt3 = $conn->prepare("DROP TABLE IF EXISTS fixtures;
     CREATE TABLE fixtures (fixtureID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
