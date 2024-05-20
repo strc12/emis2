@@ -6,7 +6,7 @@ include "setseason.php";
 <html>
 <head>
 <title>Calendar</title>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -217,7 +217,7 @@ function build_html_calendar($year, $month, $events = null) {
     INNER JOIN schools as awsc ON away.SchoolID=awsc.SchoolID 
     INNER JOIN schools as hsch ON home.SchoolID=hsch.SchoolID 
     WHERE season=:season  ORDER BY fixtdate ASC" );
-    $stmt->bindParam(':season', $_SEASON);
+    $stmt->bindParam(':season', $_SESSION["SEASON"]);
    
     $stmt->execute();
   

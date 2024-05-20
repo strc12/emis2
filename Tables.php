@@ -29,21 +29,23 @@ td,th,thead{
 <div id="navigation"></div>
 <div class="container-fluid" style="margin-top:10px">
 <h2>League Tables:</h2>
-<label>Select season</label>
-<select name="season">
+
     
 <?php
 include_once ("connect.php");
 include_once ("setseason.php");
 
-$stmt9=$conn->prepare("SELECT seasonname FROM currentseason");
+/*echo ("<label>Select season</label>
+<select name='season'>"); 
+$stmt=$conn->prepare("SELECT * FROM seasonlist");
 //$stmt = $conn->prepare("SELECT * FROM currentseason;" );
-$stmt9->execute();
-while ($row = $stmt9->fetch(PDO::FETCH_ASSOC));
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-    echo ("<option value='".$_SEASON."'>".$_SEASON."</option>");
+    #print_r($row);
+    echo ("<option value='".$row["seasoncode"]."'>".$row["seasonname"]."</option>");
 }
-    echo ("</select>");
+    echo ("</select>"); */
 
 $leagues=array("A","B");
 
@@ -109,7 +111,7 @@ foreach($leagues as $div){
         WHERE (away.TeamID=:AWSID and fixtures.Season=:SEAS) OR (fixtures.Season=:SEAS and home.TeamID=:HSID)" );
         $stmt->bindParam(':AWSID', $row1['TID']);
         $stmt->bindParam(':HSID', $row1['TID']);
-        $stmt->bindParam(':SEAS', $_SEASON);
+        $stmt->bindParam(':SEAS', $_SESSION["SEASON"]);
         $stmt->execute();
         $totpts=0;
         $totgames=0;
