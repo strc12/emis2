@@ -101,7 +101,7 @@ try {
     M10H2 INT(2),
     M10A1 INT(2),
     M10A2 INT(2),
-    ScoresEntered INT(1) NOT NULL DEFAULT(0));
+    ScoresEntered INT(1) NOT NULL DEFAULT 0);
     ");
     $stmt3->execute();
     $stmt3->closeCursor(); // allows query to complete
