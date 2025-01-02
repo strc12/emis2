@@ -23,6 +23,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
         $_SESSION['name']=$row["Username"];
         $_SESSION['Teachername']=$row["Teachername"];
         $_SESSION['SchoolID']=$row["SchoolID"];
+        $_SESSION['name']=$row["Schoolname"];
         header('Location: '.$redirect);
     }else{
         header('Location: index.php');

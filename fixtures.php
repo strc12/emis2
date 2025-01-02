@@ -54,11 +54,11 @@ if (!isset($_SESSION['name']))
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     {   
         echo("<tr>");
-        if((strtotime($row["fixtdate"])==NULL )){
+        if((strtotime($row["fixtdate"])==0000-00-00 )){
             echo("<td style='color:#FF0000'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date' id='' name='".$row['FixtureID']."' size='9' value='".$row["fixtdate"]."'></td>");
         }else if ($_SESSION['name']== 'admin'){
             echo("<td style='color:#FF0000'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
-        }else if ($row["AWUN"]== $_SESSION["name"] ||$row["HUN"]== $_SESSION["name"]){
+        }else if ($row["AWS"]== $_SESSION["name"] ||$row["HS"]== $_SESSION["name"]){
             echo("<td>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");
         }else{
             echo("<td style='color:#C0C0C0'>".$row['HS']." ".$row['Division']." v ".$row['AWS']." ".$row['Division']."</td><td><input disabled class='form-control' type='date'id='' name='".$row['FixtureID']."'size='9' value='".$row["fixtdate"]."'></td>");   

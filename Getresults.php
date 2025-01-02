@@ -51,7 +51,7 @@ AL2.Forename as AL2f, AL2.Surname as AL2s,
 AL3.Forename as AL3f, AL3.Surname as AL3s,
 awsc.Schoolname as AWS, hsch.Schoolname as HS, 
 home.Division, away.Division
-FROM Fixtures 
+FROM fixtures 
 INNER JOIN  players as M1 on HM1ID = M1.UserID
 INNER JOIN  players as M2 on HM2ID = M2.UserID
 INNER JOIN  players as M3 on HM3ID = M3.UserID

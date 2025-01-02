@@ -2,13 +2,14 @@
 if(session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
   }
-header("Location:index.php");
+/* header("Location:index.php");
 if (!isset($_SESSION['name']))
 {
     header("Location:login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
-}
-#include "setseason.php";
-
+} */
+session_destroy();
+include "setseason.php";
+print_r($_SESSION);
 include_once ("connect.php");
 if ($_SESSION["SEASON"]!=$_POST["seasoncode"]){
     //need to check if seasonname already exists before doing this to prevent extra matches being created
@@ -27,7 +28,7 @@ if ($_SESSION["SEASON"]!=$_POST["seasoncode"]){
 
     for($x = 0; $x < $arrlength; $x++) {
         for($y = 0; $y<$arrlength; $y++){
-            
+            print_r($result);
             if ($result[$x]['TeamID']!=$result[$y]['TeamID']){
                 $stmt = $conn->prepare("INSERT INTO fixtures (FixtureID,HomeID, AwayID,FixtDate,Season)VALUES(NULL,:Home,:Away,NULL,:season)");
                 $stmt->bindParam(':Home', $result[$x]['TeamID']);
